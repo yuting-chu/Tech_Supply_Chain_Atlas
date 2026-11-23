@@ -1,0 +1,226 @@
+[
+  {
+    "layer_id": 1,
+    "code": "L1",
+    "name_zh": "上游基礎材料與特種化學品",
+    "name_en": "Raw Materials & Specialty Chemicals",
+    "bottleneck_risk_level": 5,
+    "description": "半導體製造最源頭物理基礎，技術門檻極高且被少數日美德廠商壟斷，一旦斷供將引發晶圓廠全面停擺。",
+    "subsectors": [
+      {
+        "code": "L1_SILICON_WAFER",
+        "name_zh": "矽晶圓 (12吋/8吋單晶矽)",
+        "name_en": "Silicon Wafers",
+        "key_players": ["Shin-Etsu (信越)", "SUMCO (勝高)", "GlobalWafers (環球晶)", "Siltronic"],
+        "hhi_index": 2800,
+        "chokepoints": ["高純度多晶矽精煉 (11N)", "晶體生長控制與翹曲率 (Warpage)"]
+      },
+      {
+        "code": "L1_PHOTORESIST",
+        "name_zh": "高階光阻劑 (EUV/ArFi/KrF)",
+        "name_en": "Photoresist & Polymers",
+        "key_players": ["JSR", "TOK (東京應化)", "Shin-Etsu", "DuPont (杜邦)"],
+        "hhi_index": 3500,
+        "chokepoints": ["日本四家廠商控制全球 >80% EUV/ArF 光阻劑產能"]
+      },
+      {
+        "code": "L1_SPECIALTY_GASES",
+        "name_zh": "電子級特種氣體與化學品",
+        "name_en": "Electronic Specialty Gases & Wet Chemicals",
+        "key_players": ["Linde (林德)", "Air Liquide (液空)", "Taiyo Nippon Sanso", "Merck KGaA"],
+        "hhi_index": 2200,
+        "chokepoints": ["氖氣 (Neon)、氟化氫 (Ultra-pure HF)、三氟化三氟甲矽烷"]
+      }
+    ]
+  },
+  {
+    "layer_id": 2,
+    "code": "L2",
+    "name_zh": "製造設備、次系統與關鍵零組件",
+    "name_en": "Manufacturing Equipment & Subsystems",
+    "bottleneck_risk_level": 5,
+    "description": "決定摩爾定律推進速度的物理母機。具備超高資本投入、極端精密工程與專利壁壘。",
+    "subsectors": [
+      {
+        "code": "L2_LITHOGRAPHY",
+        "name_zh": "微影曝光機 (EUV/DUV)",
+        "name_en": "Lithography Systems",
+        "key_players": ["ASML", "Canon", "Nikon"],
+        "hhi_index": 8200,
+        "chokepoints": ["EUV 曝光機全球 100% 獨家壟斷 (ASML)", "Zeiss 光學鏡頭系統", "Cymer 雷射光源"]
+      },
+      {
+        "code": "L2_ETCH_DEPOSITION",
+        "name_zh": "蝕刻與薄膜沉積設備",
+        "name_en": "Etch & Deposition (CVD/PVD/ALD)",
+        "key_players": ["Applied Materials (應材)", "Lam Research (科林研發)", "Tokyo Electron (TEL)"],
+        "hhi_index": 2900,
+        "chokepoints": ["原子層沉積 (ALD) 高精度均勻度", "高深寬比深矽蝕刻"]
+      },
+      {
+        "code": "L2_METROLOGY_INSPECTION",
+        "name_zh": "檢測與量測設備",
+        "name_en": "Metrology & Process Control",
+        "key_players": ["KLA (科磊)", "Applied Materials", "ASML (YieldStar)"],
+        "hhi_index": 4100,
+        "chokepoints": ["KLA 在光罩檢測與晶圓缺陷檢測市佔 >50%"]
+      }
+    ]
+  },
+  {
+    "layer_id": 3,
+    "code": "L3",
+    "name_zh": "電子設計自動化 (EDA) 與矽智財 (IP)",
+    "name_en": "EDA Tools & Silicon IP",
+    "bottleneck_risk_level": 5,
+    "description": "晶片設計的軟體基石與積木，為高毛利、輕資產但極深護城河的環節。",
+    "subsectors": [
+      {
+        "code": "L3_EDA_SOFTWARE",
+        "name_zh": "EDA 設計軟體",
+        "name_en": "EDA Software Platforms",
+        "key_players": ["Synopsys (新思)", "Cadence (益華電腦)", "Siemens EDA (Mentor)"],
+        "hhi_index": 6200,
+        "chokepoints": ["三大美系巨頭壟斷全球先進製程 >90% 驗證與佈局佈線工具"]
+      },
+      {
+        "code": "L3_IP_CORES",
+        "name_zh": "半導體矽智財架構",
+        "name_en": "Processor & Interface IP",
+        "key_players": ["ARM", "Synopsys IP", "Alphawave Semi", "Imagination"],
+        "hhi_index": 3800,
+        "chokepoints": ["ARM 架構在智慧型手機市佔 >99%、伺服器持續滲透", "高速 SerDes/PCIe/UCIe 實體層 IP"]
+      }
+    ]
+  },
+  {
+    "layer_id": 4,
+    "code": "L4",
+    "name_zh": "晶片設計 (IC Design / Fabless)",
+    "name_en": "Chip Design & Architecture",
+    "bottleneck_risk_level": 3,
+    "description": "針對終端演算法與算力需求轉化為架構電路，受技術快速迭代與軟硬體生態系統 (如 CUDA) 深度綁定。",
+    "subsectors": [
+      {
+        "code": "L4_AI_ACCELERATOR_GPU",
+        "name_zh": "AI 算力加速晶片與 GPU",
+        "name_en": "AI Accelerators & GPUs",
+        "key_players": ["NVIDIA", "AMD", "Google (TPU)", "Broadcom"],
+        "hhi_index": 7200,
+        "chokepoints": ["CUDA 軟體護城河", "高頻寬記憶體與計算單元互聯拓撲"]
+      },
+      {
+        "code": "L4_AP_BASEBAND",
+        "name_zh": "手機行動運算與通訊基頻晶片",
+        "name_en": "Mobile AP & Modem",
+        "key_players": ["Qualcomm (高通)", "MediaTek (聯發科)", "Apple"],
+        "hhi_index": 3100,
+        "chokepoints": ["5G/6G 專利族標準必要專利 (SEP)"]
+      }
+    ]
+  },
+  {
+    "layer_id": 5,
+    "code": "L5",
+    "name_zh": "晶圓代工與製造 (Foundry & IDM)",
+    "name_en": "Wafer Fabrication & Foundry",
+    "bottleneck_risk_level": 5,
+    "description": "將設計圖轉化為矽基積體電路的實體製造環節，具有極高資本密集度 (CapEx) 與良率學習曲線優勢。",
+    "subsectors": [
+      {
+        "code": "L5_ADVANCED_FOUNDRY",
+        "name_zh": "先進製程代工 (<= 7nm / Gate-All-Around)",
+        "name_en": "Advanced Node Pure Foundry",
+        "key_players": ["TSMC (台積電)", "Samsung Foundry", "Intel Foundry (IFS)"],
+        "hhi_index": 5800,
+        "chokepoints": ["台積電在全球 3nm/5nm 先進製程市佔高達 85%~90%", "學習曲線與缺陷密度控制"]
+      },
+      {
+        "code": "L5_MATURE_FOUNDRY",
+        "name_zh": "成熟製程代工 (>= 28nm)",
+        "name_en": "Mature Node Foundry",
+        "key_players": ["UMC (聯電)", "SMIC (中芯)", "GlobalFoundries (格羅方德)", "Vanguard (世界先進)"],
+        "hhi_index": 1800,
+        "chokepoints": ["地緣政治擴產競爭與產能過剩價格週期風險"]
+      }
+    ]
+  },
+  {
+    "layer_id": 6,
+    "code": "L6",
+    "name_zh": "封裝與測試 (OSAT & Advanced Packaging)",
+    "name_en": "Outsourced Semiconductor Assembly & Test",
+    "bottleneck_risk_level": 4,
+    "description": "延續後摩爾時代效能成長的核心，由傳統晶片切割打線演進至 2.5D/3D Chiplet 異質整合封裝。",
+    "subsectors": [
+      {
+        "code": "L6_ADVANCED_PACKAGING",
+        "name_zh": "2.5D / 3D 先進封裝 (CoWoS, EMIB, 3D-IC)",
+        "name_en": "Advanced 2.5D/3D Packaging",
+        "key_players": ["TSMC (CoWoS/SoIC)", "ASE Group (日月光投控)", "Intel", "Amkor"],
+        "hhi_index": 4200,
+        "chokepoints": ["中介層 (Interposer) 面積擴大瓶頸", "HBM 高堆疊矽穿孔 (TSV) 良率"]
+      },
+      {
+        "code": "L6_ABF_SUBSTRATE",
+        "name_zh": "高階 IC 載板 (ABF 載板)",
+        "name_en": "ABF Carrier Substrates",
+        "key_players": ["Ibiden (揖斐電)", "Shinko (新光電氣)", "Unimicron (欣興)", "Nan Ya PCB (南電)"],
+        "hhi_index": 2600,
+        "chokepoints": ["Ajinomoto Build-up Film 樹脂專利", "大尺寸層數翹曲與阻抗匹配"]
+      }
+    ]
+  },
+  {
+    "layer_id": 7,
+    "code": "L7",
+    "name_zh": "關鍵零組件、被動元件與次系統",
+    "name_en": "Key Components, Passives & Subsystems",
+    "bottleneck_risk_level": 3,
+    "description": "包含高速記憶體模組、電源管理、光學鏡頭、散熱機構等，是將晶片落地為子系統的必備支撐。",
+    "subsectors": [
+      {
+        "code": "L7_HBM_MEMORY",
+        "name_zh": "高頻寬記憶體 (HBM) 與記憶體晶圓",
+        "name_en": "HBM & DRAM/NAND Modules",
+        "key_players": ["SK Hynix", "Samsung Electronics", "Micron"],
+        "hhi_index": 3800,
+        "chokepoints": ["SK Hynix 在 HBM3/HBM3e 先進 MR-MUF 封裝技術優勢"]
+      },
+      {
+        "code": "L7_THERMAL_COOLING",
+        "name_zh": "散熱與液冷系統",
+        "name_en": "Advanced Thermal & Liquid Cooling",
+        "key_players": ["Vertiv (維諦)", "Cooler Master (酷碼)", "Auras (雙鴻)", "CCI (奇鋐)"],
+        "hhi_index": 1600,
+        "chokepoints": ["AI 伺服器單櫃 100kW+ 水冷快接頭 (Quick Disconnect) 漏液阻斷率"]
+      }
+    ]
+  },
+  {
+    "layer_id": 8,
+    "code": "L8",
+    "name_zh": "系統整合、EMS代工與終端應用品牌",
+    "name_en": "System Integration, EMS & End Devices",
+    "bottleneck_risk_level": 2,
+    "description": "終端價值的直接兌現者，整合前七大層級交付予終端消費者或企業客戶。",
+    "subsectors": [
+      {
+        "code": "L8_AI_SERVERS",
+        "name_zh": "AI 伺服器與白牌硬體代工 (ODM/EMS)",
+        "name_en": "AI Servers & Enterprise Hardware",
+        "key_players": ["Foxconn (鴻海/工業富聯)", "Quanta (廣達)", "Wistron (緯創)", "Supermicro (美超微)"],
+        "hhi_index": 2100,
+        "chokepoints": ["高壓電力架構整合", "系統級組裝測試 (System Level Test) 產能排擠"]
+      },
+      {
+        "code": "L8_CLOUD_CSP",
+        "name_zh": "超大規模雲端服務商 (Hyperscalers)",
+        "name_en": "Cloud Service Providers (CSP)",
+        "key_players": ["Microsoft (Azure)", "Amazon (AWS)", "Google Cloud", "Meta"],
+        "hhi_index": 2700,
+        "chokepoints": ["資本支出 (CapEx) 週期對上游半導體的傳導反饋與長鞭效應"]
+      }
+    ]
+  }
+]

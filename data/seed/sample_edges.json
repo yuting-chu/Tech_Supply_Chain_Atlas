@@ -1,0 +1,72 @@
+[
+  {
+    "source_node_id": "COMP_SHIN_ETSU",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.45,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "供應 12 吋先進製程超平坦高純度矽晶圓"
+  },
+  {
+    "source_node_id": "COMP_ASML",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.95,
+    "lead_time_days": 540,
+    "revenue_exposure_pct": 35.0,
+    "is_single_source": true,
+    "qualitative_notes": "供應 High-NA EUV 與 0.33 NA EUV 曝光機，為 3nm/2nm 製程唯一物理母機來源"
+  },
+  {
+    "source_node_id": "COMP_SYNOPSYS",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 8.0,
+    "is_single_source": false,
+    "qualitative_notes": "提供 EDA 物理驗證、數位實現工具與 PCIe 6.0/UCIe IP"
+  },
+  {
+    "source_node_id": "COMP_NVIDIA",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 0.98,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 12.0,
+    "is_single_source": true,
+    "qualitative_notes": "NVIDIA Blackwell/Hopper 晶片 100% 委由台積電 4N/3nm 製程代工與 CoWoS-L 封裝"
+  },
+  {
+    "source_node_id": "COMP_SK_HYNIX",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 45.0,
+    "is_single_source": false,
+    "qualitative_notes": "獨家或主要供應 HBM3 / HBM3e 12-High 高速記憶體堆疊"
+  },
+  {
+    "source_node_id": "COMP_TSMC",
+    "target_node_id": "COMP_FOXCONN",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.80,
+    "lead_time_days": 60,
+    "revenue_exposure_pct": 10.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電完成晶圓代工與 CoWoS 先進封裝後，經測試交付予鴻海進行 AI 主機板 (GPU Baseboard) 與伺服器機櫃整合"
+  },
+  {
+    "source_node_id": "COMP_FOXCONN",
+    "target_node_id": "COMP_MICROSOFT",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.65,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 22.0,
+    "is_single_source": false,
+    "qualitative_notes": "組裝整櫃 NVL72 AI 伺服器並直接交付微軟 Azure 全球資料中心"
+  }
+]

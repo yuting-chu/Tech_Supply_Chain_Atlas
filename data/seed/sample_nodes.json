@@ -1,0 +1,101 @@
+[
+  {
+    "node_id": "COMP_SHIN_ETSU",
+    "node_type": "COMPANY",
+    "name_zh": "信越化學 (Shin-Etsu Chemical)",
+    "name_en": "Shin-Etsu Chemical Co., Ltd.",
+    "layer_id": 1,
+    "subsector_code": "L1_SILICON_WAFER",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 31.0,
+    "metadata": { "country": "JP", "ticker": "4063.T", "market_cap_bil": 75.2 }
+  },
+  {
+    "node_id": "COMP_ASML",
+    "node_type": "COMPANY",
+    "name_zh": "艾司摩爾 (ASML)",
+    "name_en": "ASML Holding N.V.",
+    "layer_id": 2,
+    "subsector_code": "L2_LITHOGRAPHY",
+    "elasticity_score": 0.02,
+    "global_market_share_pct": 85.0,
+    "metadata": { "country": "NL", "ticker": "ASML.AS", "market_cap_bil": 380.0 }
+  },
+  {
+    "node_id": "COMP_SYNOPSYS",
+    "node_type": "COMPANY",
+    "name_zh": "新思科技 (Synopsys)",
+    "name_en": "Synopsys, Inc.",
+    "layer_id": 3,
+    "subsector_code": "L3_EDA_SOFTWARE",
+    "elasticity_score": 0.10,
+    "global_market_share_pct": 36.0,
+    "metadata": { "country": "US", "ticker": "SNPS", "market_cap_bil": 85.0 }
+  },
+  {
+    "node_id": "COMP_NVIDIA",
+    "node_type": "COMPANY",
+    "name_zh": "輝達 (NVIDIA)",
+    "name_en": "NVIDIA Corporation",
+    "layer_id": 4,
+    "subsector_code": "L4_AI_ACCELERATOR_GPU",
+    "elasticity_score": 0.12,
+    "global_market_share_pct": 88.0,
+    "metadata": { "country": "US", "ticker": "NVDA", "market_cap_bil": 3200.0 }
+  },
+  {
+    "node_id": "COMP_TSMC",
+    "node_type": "COMPANY",
+    "name_zh": "台灣積體電路 (TSMC)",
+    "name_en": "Taiwan Semiconductor Manufacturing Co.",
+    "layer_id": 5,
+    "subsector_code": "L5_ADVANCED_FOUNDRY",
+    "elasticity_score": 0.05,
+    "global_market_share_pct": 62.0,
+    "metadata": { "country": "TW", "ticker": "2330.TW", "market_cap_bil": 950.0 }
+  },
+  {
+    "node_id": "COMP_ASE_GROUP",
+    "node_type": "COMPANY",
+    "name_zh": "日月光投控 (ASE Group)",
+    "name_en": "ASE Technology Holding",
+    "layer_id": 6,
+    "subsector_code": "L6_ADVANCED_PACKAGING",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 28.0,
+    "metadata": { "country": "TW", "ticker": "3711.TW", "market_cap_bil": 22.0 }
+  },
+  {
+    "node_id": "COMP_SK_HYNIX",
+    "node_type": "COMPANY",
+    "name_zh": "SK 海力士 (SK Hynix)",
+    "name_en": "SK Hynix Inc.",
+    "layer_id": 7,
+    "subsector_code": "L7_HBM_MEMORY",
+    "elasticity_score": 0.18,
+    "global_market_share_pct": 52.0,
+    "metadata": { "country": "KR", "ticker": "000660.KS", "market_cap_bil": 98.0 }
+  },
+  {
+    "node_id": "COMP_FOXCONN",
+    "node_type": "COMPANY",
+    "name_zh": "鴻海精密 / 富士康 (Foxconn)",
+    "name_en": "Hon Hai Precision Industry Co., Ltd.",
+    "layer_id": 8,
+    "subsector_code": "L8_AI_SERVERS",
+    "elasticity_score": 0.35,
+    "global_market_share_pct": 40.0,
+    "metadata": { "country": "TW", "ticker": "2317.TW", "market_cap_bil": 70.0 }
+  },
+  {
+    "node_id": "COMP_MICROSOFT",
+    "node_type": "COMPANY",
+    "name_zh": "微軟 (Microsoft)",
+    "name_en": "Microsoft Corporation",
+    "layer_id": 8,
+    "subsector_code": "L8_CLOUD_CSP",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 24.0,
+    "metadata": { "country": "US", "ticker": "MSFT", "market_cap_bil": 3100.0 }
+  }
+]
