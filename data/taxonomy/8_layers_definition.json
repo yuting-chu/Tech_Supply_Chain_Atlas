@@ -11,25 +11,25 @@
         "code": "L1_SILICON_WAFER",
         "name_zh": "矽晶圓 (12吋/8吋單晶矽)",
         "name_en": "Silicon Wafers",
-        "key_players": ["Shin-Etsu (信越)", "SUMCO (勝高)", "GlobalWafers (環球晶)", "Siltronic"],
         "hhi_index": 2800,
-        "chokepoints": ["高純度多晶矽精煉 (11N)", "晶體生長控制與翹曲率 (Warpage)"]
+        "avg_margin_pct": 32.5,
+        "chokepoints": ["高純度多晶矽精煉 (11N)", "晶體生長控制與超平坦翹曲率 (Warpage)"]
       },
       {
         "code": "L1_PHOTORESIST",
         "name_zh": "高階光阻劑 (EUV/ArFi/KrF)",
         "name_en": "Photoresist & Polymers",
-        "key_players": ["JSR", "TOK (東京應化)", "Shin-Etsu", "DuPont (杜邦)"],
-        "hhi_index": 3500,
+        "hhi_index": 3800,
+        "avg_margin_pct": 28.0,
         "chokepoints": ["日本四家廠商控制全球 >80% EUV/ArF 光阻劑產能"]
       },
       {
         "code": "L1_SPECIALTY_GASES",
-        "name_zh": "電子級特種氣體與化學品",
+        "name_zh": "電子級特種氣體與高純化學品",
         "name_en": "Electronic Specialty Gases & Wet Chemicals",
-        "key_players": ["Linde (林德)", "Air Liquide (液空)", "Taiyo Nippon Sanso", "Merck KGaA"],
-        "hhi_index": 2200,
-        "chokepoints": ["氖氣 (Neon)、氟化氫 (Ultra-pure HF)、三氟化三氟甲矽烷"]
+        "hhi_index": 2600,
+        "avg_margin_pct": 24.0,
+        "chokepoints": ["超高純度氟化氫 (Ultra-pure HF)", "氖氣 (Neon)", "高純三氟化氮"]
       }
     ]
   },
@@ -39,31 +39,47 @@
     "name_zh": "製造設備、次系統與關鍵零組件",
     "name_en": "Manufacturing Equipment & Subsystems",
     "bottleneck_risk_level": 5,
-    "description": "決定摩爾定律推進速度的物理母機。具備超高資本投入、極端精密工程與專利壁壘。",
+    "description": "決定摩爾定律推進速度的物理母機。具備超高資本投入、極端精密光學與工程專利壁壘。",
     "subsectors": [
       {
         "code": "L2_LITHOGRAPHY",
         "name_zh": "微影曝光機 (EUV/DUV)",
         "name_en": "Lithography Systems",
-        "key_players": ["ASML", "Canon", "Nikon"],
         "hhi_index": 8200,
-        "chokepoints": ["EUV 曝光機全球 100% 獨家壟斷 (ASML)", "Zeiss 光學鏡頭系統", "Cymer 雷射光源"]
+        "avg_margin_pct": 34.0,
+        "chokepoints": ["ASML 獨家壟斷 100% EUV 設備", "Cymer 極紫外線光源"]
+      },
+      {
+        "code": "L2_OPTICAL_SUBSYSTEMS",
+        "name_zh": "微影反射光學次系統",
+        "name_en": "Lithography Optical Subsystems",
+        "hhi_index": 10000,
+        "avg_margin_pct": 42.0,
+        "chokepoints": ["蔡司 Carl Zeiss SMT 獨家提供微影反射鏡，原子級表面平整度"]
       },
       {
         "code": "L2_ETCH_DEPOSITION",
-        "name_zh": "蝕刻與薄膜沉積設備",
-        "name_en": "Etch & Deposition (CVD/PVD/ALD)",
-        "key_players": ["Applied Materials (應材)", "Lam Research (科林研發)", "Tokyo Electron (TEL)"],
-        "hhi_index": 2900,
-        "chokepoints": ["原子層沉積 (ALD) 高精度均勻度", "高深寬比深矽蝕刻"]
+        "name_zh": "蝕刻、薄膜沉積與塗布設備",
+        "name_en": "Etch, Deposition & Track Systems",
+        "hhi_index": 3100,
+        "avg_margin_pct": 29.5,
+        "chokepoints": ["TEL 塗布顯影機市佔 85%", "高深寬比原子層沉積 (ALD)"]
       },
       {
         "code": "L2_METROLOGY_INSPECTION",
-        "name_zh": "檢測與量測設備",
-        "name_en": "Metrology & Process Control",
-        "key_players": ["KLA (科磊)", "Applied Materials", "ASML (YieldStar)"],
-        "hhi_index": 4100,
-        "chokepoints": ["KLA 在光罩檢測與晶圓缺陷檢測市佔 >50%"]
+        "name_zh": "檢測、量測與光罩缺陷分析",
+        "name_en": "Metrology & Mask Inspection",
+        "hhi_index": 5200,
+        "avg_margin_pct": 38.0,
+        "chokepoints": ["Lasertec 壟斷 100% EUV Blank 光罩檢測機", "KLA 光學晶圓缺陷量測"]
+      },
+      {
+        "code": "L2_CLEANING_ION_IMPLANT",
+        "name_zh": "晶圓清洗與離子植入機",
+        "name_en": "Wafer Cleaning & Ion Implantation",
+        "hhi_index": 2900,
+        "avg_margin_pct": 22.0,
+        "chokepoints": ["SCREEN 單晶圓濕法清洗市佔 45%", "Axcelis 高能離子植入技術"]
       }
     ]
   },
@@ -77,19 +93,19 @@
     "subsectors": [
       {
         "code": "L3_EDA_SOFTWARE",
-        "name_zh": "EDA 設計軟體",
-        "name_en": "EDA Software Platforms",
-        "key_players": ["Synopsys (新思)", "Cadence (益華電腦)", "Siemens EDA (Mentor)"],
+        "name_zh": "EDA 物理設計與驗證平台",
+        "name_en": "EDA Design Platforms",
         "hhi_index": 6200,
-        "chokepoints": ["三大美系巨頭壟斷全球先進製程 >90% 驗證與佈局佈線工具"]
+        "avg_margin_pct": 36.0,
+        "chokepoints": ["三大美系巨頭壟斷先進製程 >90% 佈局佈線與驗證工具"]
       },
       {
         "code": "L3_IP_CORES",
-        "name_zh": "半導體矽智財架構",
+        "name_zh": "處理器架構與高速互聯 IP",
         "name_en": "Processor & Interface IP",
-        "key_players": ["ARM", "Synopsys IP", "Alphawave Semi", "Imagination"],
-        "hhi_index": 3800,
-        "chokepoints": ["ARM 架構在智慧型手機市佔 >99%、伺服器持續滲透", "高速 SerDes/PCIe/UCIe 實體層 IP"]
+        "hhi_index": 4500,
+        "avg_margin_pct": 48.0,
+        "chokepoints": ["ARM 指令集壟斷智慧型手機", "高速 PCIe/UCIe/SerDes 實體層 IP"]
       }
     ]
   },
@@ -103,19 +119,35 @@
     "subsectors": [
       {
         "code": "L4_AI_ACCELERATOR_GPU",
-        "name_zh": "AI 算力加速晶片與 GPU",
-        "name_en": "AI Accelerators & GPUs",
-        "key_players": ["NVIDIA", "AMD", "Google (TPU)", "Broadcom"],
+        "name_zh": "AI 算力加速晶片、GPU 與 ASIC",
+        "name_en": "AI Accelerators, GPUs & Custom ASICs",
         "hhi_index": 7200,
-        "chokepoints": ["CUDA 軟體護城河", "高頻寬記憶體與計算單元互聯拓撲"]
+        "avg_margin_pct": 65.0,
+        "chokepoints": ["NVIDIA CUDA 軟體護城河", "超大規模高頻寬記憶體與計算單元互聯拓撲"]
       },
       {
         "code": "L4_AP_BASEBAND",
-        "name_zh": "手機行動運算與通訊基頻晶片",
+        "name_zh": "行動處理器 (AP) 與 5G/6G 通訊基頻",
         "name_en": "Mobile AP & Modem",
-        "key_players": ["Qualcomm (高通)", "MediaTek (聯發科)", "Apple"],
-        "hhi_index": 3100,
-        "chokepoints": ["5G/6G 專利族標準必要專利 (SEP)"]
+        "hhi_index": 3300,
+        "avg_margin_pct": 28.0,
+        "chokepoints": ["5G/6G 標準必要專利 (SEP) 授權壁壘"]
+      },
+      {
+        "code": "L4_NETWORKING_SWITCH",
+        "name_zh": "高速網通交換晶片與光通訊 DSP",
+        "name_en": "Networking Switch & Optical DSP",
+        "hhi_index": 4800,
+        "avg_margin_pct": 35.0,
+        "chokepoints": ["51.2Tbps 超高速交換晶片專利 (Broadcom/Marvell)"]
+      },
+      {
+        "code": "L4_ANALOG_POWER_IC",
+        "name_zh": "高性能類比與電源管理晶片 (PMIC)",
+        "name_en": "High-Performance Analog & PMIC",
+        "hhi_index": 2200,
+        "avg_margin_pct": 42.0,
+        "chokepoints": ["精密電壓調節模組 (VRM) 瞬態反應"]
       }
     ]
   },
@@ -129,19 +161,27 @@
     "subsectors": [
       {
         "code": "L5_ADVANCED_FOUNDRY",
-        "name_zh": "先進製程代工 (<= 7nm / Gate-All-Around)",
-        "name_en": "Advanced Node Pure Foundry",
-        "key_players": ["TSMC (台積電)", "Samsung Foundry", "Intel Foundry (IFS)"],
+        "name_zh": "先進製程晶圓代工 (<= 7nm / GAA)",
+        "name_en": "Advanced Node Foundry",
         "hhi_index": 5800,
-        "chokepoints": ["台積電在全球 3nm/5nm 先進製程市佔高達 85%~90%", "學習曲線與缺陷密度控制"]
+        "avg_margin_pct": 45.0,
+        "chokepoints": ["台積電在全球先進製程市佔 85%~90%", "缺陷密度控制與學習曲線壁壘"]
       },
       {
         "code": "L5_MATURE_FOUNDRY",
-        "name_zh": "成熟製程代工 (>= 28nm)",
+        "name_zh": "成熟製程晶圓代工 (>= 28nm)",
         "name_en": "Mature Node Foundry",
-        "key_players": ["UMC (聯電)", "SMIC (中芯)", "GlobalFoundries (格羅方德)", "Vanguard (世界先進)"],
         "hhi_index": 1800,
-        "chokepoints": ["地緣政治擴產競爭與產能過剩價格週期風險"]
+        "avg_margin_pct": 25.0,
+        "chokepoints": ["地緣政治擴產與產能過剩週期風險"]
+      },
+      {
+        "code": "L5_POWER_COMPOUND",
+        "name_zh": "功率與化合物半導體 (SiC / GaN)",
+        "name_en": "Power & Compound Semiconductors",
+        "hhi_index": 2400,
+        "avg_margin_pct": 22.0,
+        "chokepoints": ["高壓車用牽引逆變器模組可靠性 (Infineon/STM)"]
       }
     ]
   },
@@ -151,75 +191,131 @@
     "name_zh": "封裝與測試 (OSAT & Advanced Packaging)",
     "name_en": "Outsourced Semiconductor Assembly & Test",
     "bottleneck_risk_level": 4,
-    "description": "延續後摩爾時代效能成長的核心，由傳統晶片切割打線演進至 2.5D/3D Chiplet 異質整合封裝。",
+    "description": "延續後摩爾時代效能成長的核心，由傳統晶片切割打線演進至 2.5D/3D Chiplet 異質整合封裝與高階載板。",
     "subsectors": [
       {
         "code": "L6_ADVANCED_PACKAGING",
-        "name_zh": "2.5D / 3D 先進封裝 (CoWoS, EMIB, 3D-IC)",
+        "name_zh": "2.5D / 3D 先進封裝 (CoWoS, SoIC, EMIB)",
         "name_en": "Advanced 2.5D/3D Packaging",
-        "key_players": ["TSMC (CoWoS/SoIC)", "ASE Group (日月光投控)", "Intel", "Amkor"],
-        "hhi_index": 4200,
-        "chokepoints": ["中介層 (Interposer) 面積擴大瓶頸", "HBM 高堆疊矽穿孔 (TSV) 良率"]
+        "hhi_index": 4800,
+        "avg_margin_pct": 32.0,
+        "chokepoints": ["中介層 (Interposer) 面積擴增瓶頸", "高堆疊矽穿孔 (TSV) 熱膨脹管理"]
       },
       {
         "code": "L6_ABF_SUBSTRATE",
-        "name_zh": "高階 IC 載板 (ABF 載板)",
-        "name_en": "ABF Carrier Substrates",
-        "key_players": ["Ibiden (揖斐電)", "Shinko (新光電氣)", "Unimicron (欣興)", "Nan Ya PCB (南電)"],
-        "hhi_index": 2600,
-        "chokepoints": ["Ajinomoto Build-up Film 樹脂專利", "大尺寸層數翹曲與阻抗匹配"]
+        "name_zh": "大尺寸高層數 ABF IC 載板",
+        "name_en": "High-Layer ABF Substrates",
+        "hhi_index": 3200,
+        "avg_margin_pct": 28.0,
+        "chokepoints": ["Ajinomoto 絕緣膜材料專利", "極細線寬線距與翹曲變形率控制"]
+      },
+      {
+        "code": "L6_TESTING_SERVICES",
+        "name_zh": "晶圓針測 (CP) 與成品最終測試 (FT)",
+        "name_en": "Wafer Sort & Final Test",
+        "hhi_index": 2500,
+        "avg_margin_pct": 26.0,
+        "chokepoints": ["AI 高功率晶片極低溫/超高溫燃燒測試 (Burn-in) 設備產能排擠"]
       }
     ]
   },
   {
     "layer_id": 7,
     "code": "L7",
-    "name_zh": "關鍵零組件、被動元件與次系統",
+    "name_zh": "關鍵零組件、被動元件與散熱次系統",
     "name_en": "Key Components, Passives & Subsystems",
     "bottleneck_risk_level": 3,
-    "description": "包含高速記憶體模組、電源管理、光學鏡頭、散熱機構等，是將晶片落地為子系統的必備支撐。",
+    "description": "包含高速記憶體模組、散熱次系統、大功率電源與精密結構件，是落地為子系統的必備支撐。",
     "subsectors": [
       {
         "code": "L7_HBM_MEMORY",
-        "name_zh": "高頻寬記憶體 (HBM) 與記憶體晶圓",
-        "name_en": "HBM & DRAM/NAND Modules",
-        "key_players": ["SK Hynix", "Samsung Electronics", "Micron"],
-        "hhi_index": 3800,
-        "chokepoints": ["SK Hynix 在 HBM3/HBM3e 先進 MR-MUF 封裝技術優勢"]
+        "name_zh": "高頻寬記憶體 (HBM) 與先進 DRAM",
+        "name_en": "HBM & Advanced DRAM",
+        "hhi_index": 4200,
+        "avg_margin_pct": 38.0,
+        "chokepoints": ["SK海力士在 HBM3e 先進 MR-MUF 封裝技術優勢"]
       },
       {
         "code": "L7_THERMAL_COOLING",
-        "name_zh": "散熱與液冷系統",
-        "name_en": "Advanced Thermal & Liquid Cooling",
-        "key_players": ["Vertiv (維諦)", "Cooler Master (酷碼)", "Auras (雙鴻)", "CCI (奇鋐)"],
-        "hhi_index": 1600,
-        "chokepoints": ["AI 伺服器單櫃 100kW+ 水冷快接頭 (Quick Disconnect) 漏液阻斷率"]
+        "name_zh": "資料中心液冷系統、水冷板與分歧管",
+        "name_en": "Liquid Cooling & Advanced Thermal",
+        "hhi_index": 2200,
+        "avg_margin_pct": 24.0,
+        "chokepoints": ["AI 伺服器單櫃 120kW+ 水冷快接頭漏液阻斷率與 3D VC 散熱均勻度"]
+      },
+      {
+        "code": "L7_POWER_SUPPLY",
+        "name_zh": "伺服器鈦金級大功率電源模組 (PSU)",
+        "name_en": "Server Power Supplies & VRM",
+        "hhi_index": 3500,
+        "avg_margin_pct": 20.0,
+        "chokepoints": ["台達電在 5.5kW / 10kW AI 伺服器電源高轉換效率 (>97.5%) 專利"]
+      },
+      {
+        "code": "L7_SERVER_SLIDES",
+        "name_zh": "AI 伺服器重載高精度專利滑軌",
+        "name_en": "Heavy-Duty Server Slide Rails",
+        "hhi_index": 7500,
+        "avg_margin_pct": 45.0,
+        "chokepoints": ["川湖科技在全球 AI 伺服器滑軌超過 80% 專利壟斷"]
+      },
+      {
+        "code": "L7_PASSIVE_COMPONENTS",
+        "name_zh": "高容量車規/伺服器級 MLCC 與電感",
+        "name_en": "High-Cap MLCC & Inductors",
+        "hhi_index": 2900,
+        "avg_margin_pct": 25.0,
+        "chokepoints": ["村田製作所超微型高介電粉末燒結技術"]
+      },
+      {
+        "code": "L7_OPTICAL_LENSES",
+        "name_zh": "智慧型手機旗艦光學鏡頭群",
+        "name_en": "Precision Optical Lenses",
+        "hhi_index": 3600,
+        "avg_margin_pct": 46.0,
+        "chokepoints": ["大立光 8P/9P 潛望式塑膠鏡片模組與專利護城河"]
       }
     ]
   },
   {
     "layer_id": 8,
     "code": "L8",
-    "name_zh": "系統整合、EMS代工與終端應用品牌",
+    "name_zh": "系統整合、EMS代工與終端雲端客戶",
     "name_en": "System Integration, EMS & End Devices",
     "bottleneck_risk_level": 2,
-    "description": "終端價值的直接兌現者，整合前七大層級交付予終端消費者或企業客戶。",
+    "description": "終端價值的直接兌現者，整合前七大層級交付予終端消費者或超大規模雲端客戶 (Hyperscalers)。",
     "subsectors": [
       {
         "code": "L8_AI_SERVERS",
-        "name_zh": "AI 伺服器與白牌硬體代工 (ODM/EMS)",
-        "name_en": "AI Servers & Enterprise Hardware",
-        "key_players": ["Foxconn (鴻海/工業富聯)", "Quanta (廣達)", "Wistron (緯創)", "Supermicro (美超微)"],
-        "hhi_index": 2100,
-        "chokepoints": ["高壓電力架構整合", "系統級組裝測試 (System Level Test) 產能排擠"]
+        "name_zh": "AI 伺服器整櫃組裝代工 (EMS/ODM)",
+        "name_en": "AI Servers & Enterprise ODM",
+        "hhi_index": 2500,
+        "avg_margin_pct": 8.5,
+        "chokepoints": ["鴻海/廣達在 NVL72 液冷機櫃整合與高壓電力設計排產產能"]
+      },
+      {
+        "code": "L8_GPU_BASEBOARDS",
+        "name_zh": "GPU 運算主機板與加速模組代工",
+        "name_en": "GPU Baseboards & Sub-assembly",
+        "hhi_index": 4800,
+        "avg_margin_pct": 12.0,
+        "chokepoints": ["緯創在 NVIDIA GPU 基板 (OAM/UBB) 製造極高市佔"]
       },
       {
         "code": "L8_CLOUD_CSP",
         "name_zh": "超大規模雲端服務商 (Hyperscalers)",
         "name_en": "Cloud Service Providers (CSP)",
-        "key_players": ["Microsoft (Azure)", "Amazon (AWS)", "Google Cloud", "Meta"],
-        "hhi_index": 2700,
-        "chokepoints": ["資本支出 (CapEx) 週期對上游半導體的傳導反饋與長鞭效應"]
+        "hhi_index": 2800,
+        "avg_margin_pct": 32.0,
+        "chokepoints": ["CapEx 資本支出週期對上游半導體長鞭效應之傳導"]
+      },
+      {
+        "code": "L8_END_DEVICES_OEM",
+        "name_zh": "智慧型手機與終端消費電子品牌",
+        "name_en": "End Devices & Consumer OEMs",
+        "hhi_index": 2200,
+        "avg_margin_pct": 18.0,
+        "chokepoints": ["全球終端消費需求與供應鏈下單反饋"]
       }
     ]
   }

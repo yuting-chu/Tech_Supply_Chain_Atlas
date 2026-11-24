@@ -1,43 +1,333 @@
 [
   {
-    "source_node_id": "COMP_SHIN_ETSU",
-    "target_node_id": "COMP_TSMC",
+    "source_node_id": "COMP_CARL_ZEISS",
+    "target_node_id": "COMP_ASML",
     "relation_type": "SUPPLIES_TO",
-    "dependency_weight": 0.45,
-    "lead_time_days": 90,
-    "revenue_exposure_pct": 18.0,
-    "is_single_source": false,
-    "qualitative_notes": "供應 12 吋先進製程超平坦高純度矽晶圓"
+    "dependency_weight": 1.00,
+    "lead_time_days": 720,
+    "revenue_exposure_pct": 90.0,
+    "is_single_source": true,
+    "qualitative_notes": "全球唯一能提供 EUV High-NA/0.33NA 極紫外光反射光學鏡頭系統之廠商，ASML 持股 24.9%"
   },
   {
     "source_node_id": "COMP_ASML",
     "target_node_id": "COMP_TSMC",
     "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.98,
+    "lead_time_days": 540,
+    "revenue_exposure_pct": 38.0,
+    "is_single_source": true,
+    "qualitative_notes": "台積電先進製程 (7nm/5nm/3nm/2nm) 唯一物理曝光母機來源"
+  },
+  {
+    "source_node_id": "COMP_ASML",
+    "target_node_id": "COMP_SAMSUNG_FOUNDRY",
+    "relation_type": "SUPPLIES_TO",
     "dependency_weight": 0.95,
     "lead_time_days": 540,
-    "revenue_exposure_pct": 35.0,
+    "revenue_exposure_pct": 18.0,
     "is_single_source": true,
-    "qualitative_notes": "供應 High-NA EUV 與 0.33 NA EUV 曝光機，為 3nm/2nm 製程唯一物理母機來源"
+    "qualitative_notes": "三星 3nm GAA 與先進 DRAM (1a/1b) 微影母機"
+  },
+  {
+    "source_node_id": "COMP_ASML",
+    "target_node_id": "COMP_INTEL",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.95,
+    "lead_time_days": 540,
+    "revenue_exposure_pct": 20.0,
+    "is_single_source": true,
+    "qualitative_notes": "Intel 18A / Intel 3 先進製程與首台 High-NA EUV 採購客戶"
+  },
+  {
+    "source_node_id": "COMP_ASML",
+    "target_node_id": "COMP_SK_HYNIX",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 360,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": true,
+    "qualitative_notes": "SK海力士 1-alpha / 1-beta 先進製程 HBM3e/DRAM 微影光阻曝光機"
+  },
+  {
+    "source_node_id": "COMP_LASERTEC",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 1.00,
+    "lead_time_days": 360,
+    "revenue_exposure_pct": 42.0,
+    "is_single_source": true,
+    "qualitative_notes": "Lasertec ACTIS 全球唯一 EUV 空白光罩內部缺陷檢測機，先進製程良率唯一守門人"
+  },
+  {
+    "source_node_id": "COMP_LASERTEC",
+    "target_node_id": "COMP_SAMSUNG_FOUNDRY",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 1.00,
+    "lead_time_days": 360,
+    "revenue_exposure_pct": 25.0,
+    "is_single_source": true,
+    "qualitative_notes": "三星先進製程與高階記憶體 EUV 光罩檢測唯一來源"
+  },
+  {
+    "source_node_id": "COMP_LASERTEC",
+    "target_node_id": "COMP_INTEL",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 1.00,
+    "lead_time_days": 360,
+    "revenue_exposure_pct": 20.0,
+    "is_single_source": true,
+    "qualitative_notes": "Intel 晶圓代工光罩廠 EUV 檢測標準設備"
+  },
+  {
+    "source_node_id": "COMP_TOKYO_ELECTRON",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 24.0,
+    "is_single_source": false,
+    "qualitative_notes": "極紫外光 EUV 專用塗布顯影機 (Coater/Developer) 市佔 >90%"
+  },
+  {
+    "source_node_id": "COMP_KLA",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "高階光學圖案化晶圓缺陷檢測與疊對量測 (Overlay Metrology)"
+  },
+  {
+    "source_node_id": "COMP_APPLIED_MATERIALS",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.80,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 16.0,
+    "is_single_source": false,
+    "qualitative_notes": "原子層沉積 (ALD)、PVD 金屬化薄膜與 CMP 化學機械研磨機"
+  },
+  {
+    "source_node_id": "COMP_LAM_RESEARCH",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.80,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 14.0,
+    "is_single_source": false,
+    "qualitative_notes": "奈米級導體/介電質電漿蝕刻機 (Etcher)"
+  },
+  {
+    "source_node_id": "COMP_SCREEN",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "單晶圓濕法清洗機 (Wet Cleaning)，控制金屬與顆粒污染"
+  },
+  {
+    "source_node_id": "COMP_SHIN_ETSU",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.50,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 20.0,
+    "is_single_source": false,
+    "qualitative_notes": "12 吋先進製程超低缺陷高純度單晶矽晶圓第一大供應商"
+  },
+  {
+    "source_node_id": "COMP_SUMCO",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.35,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電第二大矽晶圓供應商"
+  },
+  {
+    "source_node_id": "COMP_GLOBALWAFERS",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.20,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電成熟與部分先進製程第三大矽晶圓供應商"
+  },
+  {
+    "source_node_id": "COMP_JSR",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 28.0,
+    "is_single_source": false,
+    "qualitative_notes": "先進製程 EUV / ArFi 光阻劑核心供應商"
+  },
+  {
+    "source_node_id": "COMP_TOK",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 24.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電先進封裝 (CoWoS) 厚膜光阻與 EUV 光阻劑供應商"
+  },
+  {
+    "source_node_id": "COMP_STELLA_CHEMIFA",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 60,
+    "revenue_exposure_pct": 32.0,
+    "is_single_source": false,
+    "qualitative_notes": "12N 超高純度氟化氫 (晶圓清洗與蝕刻去除氧化層必備)"
+  },
+  {
+    "source_node_id": "COMP_LINDE",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.60,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 12.0,
+    "is_single_source": false,
+    "qualitative_notes": "南科/竹科現場製氣廠 (On-site Gas Generator)，供應超純氮、氬、氦與特氣"
   },
   {
     "source_node_id": "COMP_SYNOPSYS",
     "target_node_id": "COMP_NVIDIA",
     "relation_type": "SUPPLIES_TO",
-    "dependency_weight": 0.70,
+    "dependency_weight": 0.80,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 10.0,
+    "is_single_source": false,
+    "qualitative_notes": "提供數位佈局實現 (Design Compiler/Fusion Compiler) 與 PCIe 6.0 IP"
+  },
+  {
+    "source_node_id": "COMP_CADENCE",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
     "lead_time_days": 30,
     "revenue_exposure_pct": 8.0,
     "is_single_source": false,
-    "qualitative_notes": "提供 EDA 物理驗證、數位實現工具與 PCIe 6.0/UCIe IP"
+    "qualitative_notes": "Palladium 硬體模擬加速器與高階高速訊號完整性分析"
+  },
+  {
+    "source_node_id": "COMP_ARM",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "LICENSES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 15,
+    "revenue_exposure_pct": 5.0,
+    "is_single_source": false,
+    "qualitative_notes": "NVIDIA Grace CPU 採用 ARMv9 架構指令集授權"
+  },
+  {
+    "source_node_id": "COMP_ARM",
+    "target_node_id": "COMP_APPLE_SILICON",
+    "relation_type": "LICENSES_TO",
+    "dependency_weight": 0.98,
+    "lead_time_days": 15,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": true,
+    "qualitative_notes": "蘋果 A 系列與 M 系列晶片全線基於 ARM 架構指令集進行自研深度客製"
+  },
+  {
+    "source_node_id": "COMP_ARM",
+    "target_node_id": "COMP_QUALCOMM",
+    "relation_type": "LICENSES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 15,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": true,
+    "qualitative_notes": "驍龍 (Snapdragon) 系列處理器核心架構授權"
+  },
+  {
+    "source_node_id": "COMP_ARM",
+    "target_node_id": "COMP_MEDIATEK",
+    "relation_type": "LICENSES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 15,
+    "revenue_exposure_pct": 20.0,
+    "is_single_source": true,
+    "qualitative_notes": "天璣 (Dimensity) 旗艦 CPU (Cortex-X4/A720) 核心架構授權"
+  },
+  {
+    "source_node_id": "COMP_EMEMORY",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "LICENSES_TO",
+    "dependency_weight": 0.50,
+    "lead_time_days": 15,
+    "revenue_exposure_pct": 25.0,
+    "is_single_source": false,
+    "qualitative_notes": "提供嵌入式非揮發性記憶體 NeoBit/NeoFuse IP 於台積電開放創新平台 (OIP)"
   },
   {
     "source_node_id": "COMP_NVIDIA",
     "target_node_id": "COMP_TSMC",
     "relation_type": "DEPENDS_ON",
-    "dependency_weight": 0.98,
+    "dependency_weight": 0.99,
     "lead_time_days": 180,
-    "revenue_exposure_pct": 12.0,
+    "revenue_exposure_pct": 15.0,
     "is_single_source": true,
-    "qualitative_notes": "NVIDIA Blackwell/Hopper 晶片 100% 委由台積電 4N/3nm 製程代工與 CoWoS-L 封裝"
+    "qualitative_notes": "NVIDIA Blackwell/Hopper 晶片 100% 由台積電 4N/3nm 製程代工與 CoWoS-L 封裝"
+  },
+  {
+    "source_node_id": "COMP_APPLE_SILICON",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 1.00,
+    "lead_time_days": 150,
+    "revenue_exposure_pct": 23.0,
+    "is_single_source": true,
+    "qualitative_notes": "蘋果為台積電第一大客戶 (貢獻約 23% 營收)，3nm / 2nm 先進製程首發客戶"
+  },
+  {
+    "source_node_id": "COMP_AMD",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 0.90,
+    "lead_time_days": 150,
+    "revenue_exposure_pct": 8.0,
+    "is_single_source": true,
+    "qualitative_notes": "AMD Zen5 CPU 與 MI300X AI 晶片全面由台積電代工與 SoIC/CoWoS 封裝"
+  },
+  {
+    "source_node_id": "COMP_QUALCOMM",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 0.85,
+    "lead_time_days": 150,
+    "revenue_exposure_pct": 10.0,
+    "is_single_source": false,
+    "qualitative_notes": "高通 Snapdragon 8 Gen 3/4 旗艦晶片回流由台積電 3nm 代工"
+  },
+  {
+    "source_node_id": "COMP_MEDIATEK",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 0.90,
+    "lead_time_days": 150,
+    "revenue_exposure_pct": 12.0,
+    "is_single_source": false,
+    "qualitative_notes": "聯發科天璣 9300/9400 採用台積電先進 3nm 家族製程"
+  },
+  {
+    "source_node_id": "COMP_BROADCOM",
+    "target_node_id": "COMP_TSMC",
+    "relation_type": "DEPENDS_ON",
+    "dependency_weight": 0.85,
+    "lead_time_days": 180,
+    "revenue_exposure_pct": 9.0,
+    "is_single_source": false,
+    "qualitative_notes": "博通 Tomahawk 5 交換晶片與 Google TPU 委託台積電 5nm/3nm 代工"
   },
   {
     "source_node_id": "COMP_SK_HYNIX",
@@ -47,17 +337,167 @@
     "lead_time_days": 120,
     "revenue_exposure_pct": 45.0,
     "is_single_source": false,
-    "qualitative_notes": "獨家或主要供應 HBM3 / HBM3e 12-High 高速記憶體堆疊"
+    "qualitative_notes": "SK海力士獨家/主要供應 H100/H200/B200 所需 HBM3 及 8-High/12-High HBM3e"
+  },
+  {
+    "source_node_id": "COMP_MICRON",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.35,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": false,
+    "qualitative_notes": "美光以 1-beta 製程切入 NVIDIA H200 與 B200 HBM3e 第二供應商"
+  },
+  {
+    "source_node_id": "COMP_IBIDEN",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.60,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 25.0,
+    "is_single_source": false,
+    "qualitative_notes": "供應高階 GPU 與 CoWoS 中介層相容之超大尺寸 ABF 載板"
+  },
+  {
+    "source_node_id": "COMP_UNIMICRON",
+    "target_node_id": "COMP_NVIDIA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.40,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "欣興為 NVIDIA GPU 與 AI 伺服器主機板高階載板核心供應商"
   },
   {
     "source_node_id": "COMP_TSMC",
+    "target_node_id": "COMP_KYEC",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.80,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 35.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電將大量 AI 晶片測試 (FT/CP) 外包予京元電子執行"
+  },
+  {
+    "source_node_id": "COMP_TSMC",
+    "target_node_id": "COMP_ASE_GROUP",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 20.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電 CoWoS 產能吃緊時，將 oS (on-Substrate) 載板組裝外包予日月光執行"
+  },
+  {
+    "source_node_id": "COMP_NVIDIA",
+    "target_node_id": "COMP_WISTRON",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.90,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 30.0,
+    "is_single_source": true,
+    "qualitative_notes": "NVIDIA 將 GPU 裸晶與 HBM 交付緯創進行 GPU 運算基板 (UBB/OAM) 高精度組裝"
+  },
+  {
+    "source_node_id": "COMP_WISTRON",
+    "target_node_id": "COMP_FOXCONN",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 22.0,
+    "is_single_source": false,
+    "qualitative_notes": "緯創組裝完成之 GPU 基板交付鴻海進行 NVL72 運算機箱 (Compute Tray) 整合"
+  },
+  {
+    "source_node_id": "COMP_WISTRON",
+    "target_node_id": "COMP_QUANTA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.80,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "緯創組裝完成之 GPU 基板交付廣達 (雲達) 進行 AI 伺服器整機整合"
+  },
+  {
+    "source_node_id": "COMP_KING_SLIDE",
+    "target_node_id": "COMP_FOXCONN",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 35.0,
+    "is_single_source": true,
+    "qualitative_notes": "川湖為 NVL72 超重型機櫃與伺服器抽屜提供 1U/2U 專利高負重滑軌"
+  },
+  {
+    "source_node_id": "COMP_KING_SLIDE",
+    "target_node_id": "COMP_QUANTA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 25.0,
+    "is_single_source": true,
+    "qualitative_notes": "川湖供應廣達 AI 伺服器機櫃專利滑軌"
+  },
+  {
+    "source_node_id": "COMP_CCI",
+    "target_node_id": "COMP_FOXCONN",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 30.0,
+    "is_single_source": false,
+    "qualitative_notes": "奇鋐供應 AI 伺服器專用水冷板 (Cold Plate)、分歧管 (Manifold) 與風扇"
+  },
+  {
+    "source_node_id": "COMP_AURAS",
+    "target_node_id": "COMP_QUANTA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 28.0,
+    "is_single_source": false,
+    "qualitative_notes": "雙鴻供應廣達水冷散熱模組與浸沒式冷卻架構"
+  },
+  {
+    "source_node_id": "COMP_DELTA_ELEC",
     "target_node_id": "COMP_FOXCONN",
     "relation_type": "SUPPLIES_TO",
     "dependency_weight": 0.80,
-    "lead_time_days": 60,
-    "revenue_exposure_pct": 10.0,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 18.0,
     "is_single_source": false,
-    "qualitative_notes": "台積電完成晶圓代工與 CoWoS 先進封裝後，經測試交付予鴻海進行 AI 主機板 (GPU Baseboard) 與伺服器機櫃整合"
+    "qualitative_notes": "台達電供應 NVL72 專用 5.5kW 鈦金級電源轉換架構與 Power Shelf"
+  },
+  {
+    "source_node_id": "COMP_DELTA_ELEC",
+    "target_node_id": "COMP_QUANTA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": false,
+    "qualitative_notes": "台達電供應廣達資料中心電源分配單元"
+  },
+  {
+    "source_node_id": "COMP_VERTIV",
+    "target_node_id": "COMP_MICROSOFT",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": false,
+    "qualitative_notes": "維諦為微軟資料中心提供行級液冷冷卻分配單元 (CDU) 與電力備援系統"
+  },
+  {
+    "source_node_id": "COMP_MURATA",
+    "target_node_id": "COMP_FOXCONN",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.60,
+    "lead_time_days": 60,
+    "revenue_exposure_pct": 12.0,
+    "is_single_source": false,
+    "qualitative_notes": "村田提供 AI 主機板極高容量與微型 MLCC 被動元件"
   },
   {
     "source_node_id": "COMP_FOXCONN",
@@ -67,6 +507,136 @@
     "lead_time_days": 45,
     "revenue_exposure_pct": 22.0,
     "is_single_source": false,
-    "qualitative_notes": "組裝整櫃 NVL72 AI 伺服器並直接交付微軟 Azure 全球資料中心"
+    "qualitative_notes": "鴻海組裝 NVL72 水冷整櫃 AI 伺服器並直接交付微軟 Azure"
+  },
+  {
+    "source_node_id": "COMP_FOXCONN",
+    "target_node_id": "COMP_AMAZON",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.60,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 18.0,
+    "is_single_source": false,
+    "qualitative_notes": "鴻海組裝交付 AWS 資料中心伺服器機櫃"
+  },
+  {
+    "source_node_id": "COMP_QUANTA",
+    "target_node_id": "COMP_GOOGLE",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 32.0,
+    "is_single_source": false,
+    "qualitative_notes": "廣達為 Google 資料中心伺服器第一大白牌 ODM 代工夥伴"
+  },
+  {
+    "source_node_id": "COMP_QUANTA",
+    "target_node_id": "COMP_META",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 26.0,
+    "is_single_source": false,
+    "qualitative_notes": "廣達供應 Meta 龐大開放運算專案 (OCP) 伺服器集群"
+  },
+  {
+    "source_node_id": "COMP_WIWYNN",
+    "target_node_id": "COMP_META",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 52.0,
+    "is_single_source": false,
+    "qualitative_notes": "緯穎純白牌伺服器最大客戶為 Meta (營收佔比逾五成)"
+  },
+  {
+    "source_node_id": "COMP_WIWYNN",
+    "target_node_id": "COMP_MICROSOFT",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.65,
+    "lead_time_days": 45,
+    "revenue_exposure_pct": 35.0,
+    "is_single_source": false,
+    "qualitative_notes": "緯穎第二大客戶為微軟 Azure"
+  },
+  {
+    "source_node_id": "COMP_LARGAN",
+    "target_node_id": "COMP_APPLE",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.75,
+    "lead_time_days": 60,
+    "revenue_exposure_pct": 40.0,
+    "is_single_source": false,
+    "qualitative_notes": "大立光供應 iPhone 16/17 Pro 潛望式長焦鏡頭與超廣角鏡頭群"
+  },
+  {
+    "source_node_id": "COMP_TSMC",
+    "target_node_id": "COMP_APPLE",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 1.00,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 23.0,
+    "is_single_source": true,
+    "qualitative_notes": "蘋果所有 A 系列 (iPhone) 與 M 系列 (Mac) 處理器由台積電 100% 獨家代工"
+  },
+  {
+    "source_node_id": "COMP_FOXCONN",
+    "target_node_id": "COMP_APPLE",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.70,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 50.0,
+    "is_single_source": false,
+    "qualitative_notes": "鴻海為蘋果 iPhone 旗艦 Pro/Pro Max 機型主要代工組裝廠 (佔比約 65%)"
+  },
+  {
+    "source_node_id": "COMP_PEGATRON",
+    "target_node_id": "COMP_APPLE",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.40,
+    "lead_time_days": 30,
+    "revenue_exposure_pct": 60.0,
+    "is_single_source": false,
+    "qualitative_notes": "和碩為蘋果 iPhone 標準機型主要組裝代工廠"
+  },
+  {
+    "source_node_id": "COMP_BROADCOM",
+    "target_node_id": "COMP_GOOGLE",
+    "relation_type": "CO_DEVELOPS",
+    "dependency_weight": 0.85,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 15.0,
+    "is_single_source": true,
+    "qualitative_notes": "博通與 Google 共同設計第 1 到第 6 代 TPU (Tensor Processing Unit) ASIC"
+  },
+  {
+    "source_node_id": "COMP_BROADCOM",
+    "target_node_id": "COMP_META",
+    "relation_type": "CO_DEVELOPS",
+    "dependency_weight": 0.75,
+    "lead_time_days": 120,
+    "revenue_exposure_pct": 10.0,
+    "is_single_source": false,
+    "qualitative_notes": "博通協助 Meta 設計 MTIA 自研 AI 推論處理器"
+  },
+  {
+    "source_node_id": "COMP_TSMC",
+    "target_node_id": "COMP_TESLA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.85,
+    "lead_time_days": 150,
+    "revenue_exposure_pct": 2.0,
+    "is_single_source": false,
+    "qualitative_notes": "台積電為特斯拉代工 HW 4.0 自駕晶片與 Dojo D1 超級電腦晶片"
+  },
+  {
+    "source_node_id": "COMP_INFINEON",
+    "target_node_id": "COMP_TESLA",
+    "relation_type": "SUPPLIES_TO",
+    "dependency_weight": 0.65,
+    "lead_time_days": 90,
+    "revenue_exposure_pct": 8.0,
+    "is_single_source": false,
+    "qualitative_notes": "英飛凌供應特斯拉電動車主驅動牽引逆變器之 SiC 功率模組"
   }
 ]

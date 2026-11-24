@@ -2,13 +2,101 @@
   {
     "node_id": "COMP_SHIN_ETSU",
     "node_type": "COMPANY",
-    "name_zh": "信越化學 (Shin-Etsu Chemical)",
+    "name_zh": "信越化學 (Shin-Etsu)",
     "name_en": "Shin-Etsu Chemical Co., Ltd.",
     "layer_id": 1,
     "subsector_code": "L1_SILICON_WAFER",
     "elasticity_score": 0.15,
     "global_market_share_pct": 31.0,
-    "metadata": { "country": "JP", "ticker": "4063.T", "market_cap_bil": 75.2 }
+    "metadata": { "ticker": "4063.T", "country": "JP", "market_cap_bil": 75.2, "role": "全球第一大 12 吋矽晶圓廠" }
+  },
+  {
+    "node_id": "COMP_SUMCO",
+    "node_type": "COMPANY",
+    "name_zh": "勝高 (SUMCO)",
+    "name_en": "SUMCO Corporation",
+    "layer_id": 1,
+    "subsector_code": "L1_SILICON_WAFER",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 24.0,
+    "metadata": { "ticker": "3436.T", "country": "JP", "market_cap_bil": 6.1, "role": "全球第二大矽晶圓廠，台勝科母公司" }
+  },
+  {
+    "node_id": "COMP_GLOBALWAFERS",
+    "node_type": "COMPANY",
+    "name_zh": "環球晶圓 (GlobalWafers)",
+    "name_en": "GlobalWafers Co., Ltd.",
+    "layer_id": 1,
+    "subsector_code": "L1_SILICON_WAFER",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 17.5,
+    "metadata": { "ticker": "6488.TW", "country": "TW", "market_cap_bil": 6.8, "role": "全球第三大矽晶圓廠，跨歐美亞三地佈局" }
+  },
+  {
+    "node_id": "COMP_JSR",
+    "node_type": "COMPANY",
+    "name_zh": "JSR (日本合成橡膠)",
+    "name_en": "JSR Corporation",
+    "layer_id": 1,
+    "subsector_code": "L1_PHOTORESIST",
+    "elasticity_score": 0.08,
+    "global_market_share_pct": 32.0,
+    "metadata": { "ticker": "4185.T", "country": "JP", "market_cap_bil": 6.2, "role": "EUV/ArF 極紫外線高階光阻劑龍頭 (日本官民基金 JIC 收購)" }
+  },
+  {
+    "node_id": "COMP_TOK",
+    "node_type": "COMPANY",
+    "name_zh": "東京應化 (TOK)",
+    "name_en": "Tokyo Ohka Kogyo Co., Ltd.",
+    "layer_id": 1,
+    "subsector_code": "L1_PHOTORESIST",
+    "elasticity_score": 0.12,
+    "global_market_share_pct": 25.0,
+    "metadata": { "ticker": "4186.T", "country": "JP", "market_cap_bil": 4.5, "role": "先進製程 EUV 光阻劑與晶圓級封裝材料" }
+  },
+  {
+    "node_id": "COMP_STELLA_CHEMIFA",
+    "node_type": "COMPANY",
+    "name_zh": "斯特拉化學 (Stella Chemifa)",
+    "name_en": "Stella Chemifa Corporation",
+    "layer_id": 1,
+    "subsector_code": "L1_SPECIALTY_GASES",
+    "elasticity_score": 0.05,
+    "global_market_share_pct": 70.0,
+    "metadata": { "ticker": "4109.T", "country": "JP", "market_cap_bil": 0.45, "role": "12N 超高純度氟化氫 (蝕刻/清洗關鍵) 全球壟斷" }
+  },
+  {
+    "node_id": "COMP_DUPONT",
+    "node_type": "COMPANY",
+    "name_zh": "杜邦 (DuPont)",
+    "name_en": "DuPont de Nemours, Inc.",
+    "layer_id": 1,
+    "subsector_code": "L1_PHOTORESIST",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 15.0,
+    "metadata": { "ticker": "DD", "country": "US", "market_cap_bil": 35.0, "role": "化學機械研磨 CMP 研磨液與墊片、高階光阻" }
+  },
+  {
+    "node_id": "COMP_LINDE",
+    "node_type": "COMPANY",
+    "name_zh": "林德氣體 (Linde)",
+    "name_en": "Linde plc",
+    "layer_id": 1,
+    "subsector_code": "L1_SPECIALTY_GASES",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 33.0,
+    "metadata": { "ticker": "LIN", "country": "US", "market_cap_bil": 215.0, "role": "全球第一大工業與半導體特種氣體供應商" }
+  },
+  {
+    "node_id": "COMP_AIR_LIQUIDE",
+    "node_type": "COMPANY",
+    "name_zh": "液化空氣 (Air Liquide)",
+    "name_en": "Air Liquide S.A.",
+    "layer_id": 1,
+    "subsector_code": "L1_SPECIALTY_GASES",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 28.0,
+    "metadata": { "ticker": "AI.PA", "country": "FR", "market_cap_bil": 98.0, "role": "歐洲半導體特氣與載氣巨頭" }
   },
   {
     "node_id": "COMP_ASML",
@@ -19,7 +107,95 @@
     "subsector_code": "L2_LITHOGRAPHY",
     "elasticity_score": 0.02,
     "global_market_share_pct": 85.0,
-    "metadata": { "country": "NL", "ticker": "ASML.AS", "market_cap_bil": 380.0 }
+    "metadata": { "ticker": "ASML.AS", "country": "NL", "market_cap_bil": 380.0, "role": "全球唯一 EUV (極紫外線) 微影機製造商" }
+  },
+  {
+    "node_id": "COMP_CARL_ZEISS",
+    "node_type": "COMPANY",
+    "name_zh": "蔡司半導體 (Carl Zeiss SMT)",
+    "name_en": "Carl Zeiss SMT GmbH",
+    "layer_id": 2,
+    "subsector_code": "L2_OPTICAL_SUBSYSTEMS",
+    "elasticity_score": 0.01,
+    "global_market_share_pct": 100.0,
+    "metadata": { "ticker": "PRIVATE", "country": "DE", "market_cap_bil": 25.0, "role": "ASML 微影機反射鏡系統 100% 獨家光學供貨商" }
+  },
+  {
+    "node_id": "COMP_APPLIED_MATERIALS",
+    "node_type": "COMPANY",
+    "name_zh": "應用材料 (Applied Materials)",
+    "name_en": "Applied Materials, Inc.",
+    "layer_id": 2,
+    "subsector_code": "L2_ETCH_DEPOSITION",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 22.0,
+    "metadata": { "ticker": "AMAT", "country": "US", "market_cap_bil": 172.0, "role": "全球最大半導體薄膜沉積、CMP 與離子植入設備商" }
+  },
+  {
+    "node_id": "COMP_LAM_RESEARCH",
+    "node_type": "COMPANY",
+    "name_zh": "科林研發 (Lam Research)",
+    "name_en": "Lam Research Corporation",
+    "layer_id": 2,
+    "subsector_code": "L2_ETCH_DEPOSITION",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 26.0,
+    "metadata": { "ticker": "LRCX", "country": "US", "market_cap_bil": 108.0, "role": "高深寬比電漿蝕刻機全球龍頭 (特別於 3D NAND/先進邏輯)" }
+  },
+  {
+    "node_id": "COMP_TOKYO_ELECTRON",
+    "node_type": "COMPANY",
+    "name_zh": "東京威力科創 (TEL)",
+    "name_en": "Tokyo Electron Limited",
+    "layer_id": 2,
+    "subsector_code": "L2_ETCH_DEPOSITION",
+    "elasticity_score": 0.08,
+    "global_market_share_pct": 88.0,
+    "metadata": { "ticker": "8035.T", "country": "JP", "market_cap_bil": 88.0, "role": "塗布顯影機 (Coater/Developer) 全球壟斷龍頭" }
+  },
+  {
+    "node_id": "COMP_KLA",
+    "node_type": "COMPANY",
+    "name_zh": "科磊 (KLA)",
+    "name_en": "KLA Corporation",
+    "layer_id": 2,
+    "subsector_code": "L2_METROLOGY_INSPECTION",
+    "elasticity_score": 0.10,
+    "global_market_share_pct": 55.0,
+    "metadata": { "ticker": "KLAC", "country": "US", "market_cap_bil": 96.0, "role": "晶圓光學缺陷檢測與量測控制絕對龍頭" }
+  },
+  {
+    "node_id": "COMP_LASERTEC",
+    "node_type": "COMPANY",
+    "name_zh": "雷射科技 (Lasertec)",
+    "name_en": "Lasertec Corporation",
+    "layer_id": 2,
+    "subsector_code": "L2_METROLOGY_INSPECTION",
+    "elasticity_score": 0.01,
+    "global_market_share_pct": 100.0,
+    "metadata": { "ticker": "6920.T", "country": "JP", "market_cap_bil": 18.5, "role": "EUV Blank 光罩內部缺陷檢測機全球 100% 獨家" }
+  },
+  {
+    "node_id": "COMP_SCREEN",
+    "node_type": "COMPANY",
+    "name_zh": "迪恩士 (SCREEN)",
+    "name_en": "SCREEN Holdings Co., Ltd.",
+    "layer_id": 2,
+    "subsector_code": "L2_CLEANING_ION_IMPLANT",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 45.0,
+    "metadata": { "ticker": "7735.T", "country": "JP", "market_cap_bil": 8.2, "role": "單晶圓濕法清洗設備 (Wet Cleaning) 市佔第一" }
+  },
+  {
+    "node_id": "COMP_NIKON",
+    "node_type": "COMPANY",
+    "name_zh": "尼康 (Nikon)",
+    "name_en": "Nikon Corporation",
+    "layer_id": 2,
+    "subsector_code": "L2_LITHOGRAPHY",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 10.0,
+    "metadata": { "ticker": "7731.T", "country": "JP", "market_cap_bil": 3.8, "role": "DUV 浸潤式微影機製造商 (成熟與部分先進)" }
   },
   {
     "node_id": "COMP_SYNOPSYS",
@@ -30,7 +206,62 @@
     "subsector_code": "L3_EDA_SOFTWARE",
     "elasticity_score": 0.10,
     "global_market_share_pct": 36.0,
-    "metadata": { "country": "US", "ticker": "SNPS", "market_cap_bil": 85.0 }
+    "metadata": { "ticker": "SNPS", "country": "US", "market_cap_bil": 85.0, "role": "全球第一大 EDA 軟體與第二大 IP 供應商" }
+  },
+  {
+    "node_id": "COMP_CADENCE",
+    "node_type": "COMPANY",
+    "name_zh": "益華電腦 (Cadence)",
+    "name_en": "Cadence Design Systems, Inc.",
+    "layer_id": 3,
+    "subsector_code": "L3_EDA_SOFTWARE",
+    "elasticity_score": 0.10,
+    "global_market_share_pct": 32.0,
+    "metadata": { "ticker": "CDNS", "country": "US", "market_cap_bil": 78.0, "role": "類比設計、客製化數位實現與系統驗證 EDA 龍頭" }
+  },
+  {
+    "node_id": "COMP_SIEMENS_EDA",
+    "node_type": "COMPANY",
+    "name_zh": "西門子 EDA (Siemens EDA)",
+    "name_en": "Siemens EDA (Mentor Graphics)",
+    "layer_id": 3,
+    "subsector_code": "L3_EDA_SOFTWARE",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 16.0,
+    "metadata": { "ticker": "SIE.DE", "country": "DE", "market_cap_bil": 150.0, "role": "Calibre 實體驗證標準簽核工具" }
+  },
+  {
+    "node_id": "COMP_ARM",
+    "node_type": "COMPANY",
+    "name_zh": "安謀科技 (ARM)",
+    "name_en": "Arm Holdings plc",
+    "layer_id": 3,
+    "subsector_code": "L3_IP_CORES",
+    "elasticity_score": 0.05,
+    "global_market_share_pct": 99.0,
+    "metadata": { "ticker": "ARM", "country": "UK", "market_cap_bil": 142.0, "role": "全球 99% 智慧型手機 CPU 與邊緣運算指令集 IP 獨占" }
+  },
+  {
+    "node_id": "COMP_EMEMORY",
+    "node_type": "COMPANY",
+    "name_zh": "力旺電子 (eMemory)",
+    "name_en": "eMemory Technology Inc.",
+    "layer_id": 3,
+    "subsector_code": "L3_IP_CORES",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 42.0,
+    "metadata": { "ticker": "3529.TW", "country": "TW", "market_cap_bil": 6.2, "role": "嵌入式非揮發性記憶體 (eNVM) 與安全防偽 PUF IP 龍頭" }
+  },
+  {
+    "node_id": "COMP_ALPHAWAVE",
+    "node_type": "COMPANY",
+    "name_zh": "Alphawave Semi",
+    "name_en": "Alphawave IP Group plc",
+    "layer_id": 3,
+    "subsector_code": "L3_IP_CORES",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 18.0,
+    "metadata": { "ticker": "AWE.L", "country": "UK", "market_cap_bil": 1.2, "role": "超高速 SerDes、PCIe 6.0/7.0 與 UCIe Chiplet 互連 IP" }
   },
   {
     "node_id": "COMP_NVIDIA",
@@ -39,9 +270,108 @@
     "name_en": "NVIDIA Corporation",
     "layer_id": 4,
     "subsector_code": "L4_AI_ACCELERATOR_GPU",
-    "elasticity_score": 0.12,
+    "elasticity_score": 0.10,
     "global_market_share_pct": 88.0,
-    "metadata": { "country": "US", "ticker": "NVDA", "market_cap_bil": 3200.0 }
+    "metadata": { "ticker": "NVDA", "country": "US", "market_cap_bil": 3200.0, "role": "全球 AI 運算加速卡 (Blackwell/Hopper) 與 CUDA 生態霸主" }
+  },
+  {
+    "node_id": "COMP_AMD",
+    "node_type": "COMPANY",
+    "name_zh": "超微半導體 (AMD)",
+    "name_en": "Advanced Micro Devices, Inc.",
+    "layer_id": 4,
+    "subsector_code": "L4_AI_ACCELERATOR_GPU",
+    "elasticity_score": 0.30,
+    "global_market_share_pct": 25.0,
+    "metadata": { "ticker": "AMD", "country": "US", "market_cap_bil": 225.0, "role": "x86 CPU (EPYC) 與 AI 晶片 (MI300X/MI325)" }
+  },
+  {
+    "node_id": "COMP_BROADCOM",
+    "node_type": "COMPANY",
+    "name_zh": "博通 (Broadcom)",
+    "name_en": "Broadcom Inc.",
+    "layer_id": 4,
+    "subsector_code": "L4_NETWORKING_SWITCH",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 72.0,
+    "metadata": { "ticker": "AVGO", "country": "US", "market_cap_bil": 790.0, "role": "資料中心交換機晶片 (Tomahawk) 與客製化 AI ASIC 龍頭" }
+  },
+  {
+    "node_id": "COMP_QUALCOMM",
+    "node_type": "COMPANY",
+    "name_zh": "高通 (Qualcomm)",
+    "name_en": "Qualcomm Incorporated",
+    "layer_id": 4,
+    "subsector_code": "L4_AP_BASEBAND",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 32.0,
+    "metadata": { "ticker": "QCOM", "country": "US", "market_cap_bil": 185.0, "role": "驍龍 (Snapdragon) 旗艦手機 AP 與 5G 射頻晶片" }
+  },
+  {
+    "node_id": "COMP_MEDIATEK",
+    "node_type": "COMPANY",
+    "name_zh": "聯發科技 (MediaTek)",
+    "name_en": "MediaTek Inc.",
+    "layer_id": 4,
+    "subsector_code": "L4_AP_BASEBAND",
+    "elasticity_score": 0.30,
+    "global_market_share_pct": 36.0,
+    "metadata": { "ticker": "2454.TW", "country": "TW", "market_cap_bil": 65.0, "role": "天璣 (Dimensity) 旗艦 AP 與全球手機晶片出貨量第一" }
+  },
+  {
+    "node_id": "COMP_APPLE_SILICON",
+    "node_type": "COMPANY",
+    "name_zh": "蘋果晶片部門 (Apple Silicon)",
+    "name_en": "Apple Inc. (Silicon Design)",
+    "layer_id": 4,
+    "subsector_code": "L4_AP_BASEBAND",
+    "elasticity_score": 0.10,
+    "global_market_share_pct": 22.0,
+    "metadata": { "ticker": "AAPL", "country": "US", "market_cap_bil": 3500.0, "role": "A 系列與 M 系列極限能耗比自研 SoC" }
+  },
+  {
+    "node_id": "COMP_MARVELL",
+    "node_type": "COMPANY",
+    "name_zh": "邁威爾科技 (Marvell)",
+    "name_en": "Marvell Technology, Inc.",
+    "layer_id": 4,
+    "subsector_code": "L4_NETWORKING_SWITCH",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 25.0,
+    "metadata": { "ticker": "MRVL", "country": "US", "market_cap_bil": 68.0, "role": "資料中心光互連 DSP 與雲端客製化加速晶片" }
+  },
+  {
+    "node_id": "COMP_REALTEK",
+    "node_type": "COMPANY",
+    "name_zh": "瑞昱半導體 (Realtek)",
+    "name_en": "Realtek Semiconductor Corp.",
+    "layer_id": 4,
+    "subsector_code": "L4_NETWORKING_SWITCH",
+    "elasticity_score": 0.35,
+    "global_market_share_pct": 60.0,
+    "metadata": { "ticker": "2379.TW", "country": "TW", "market_cap_bil": 8.5, "role": "全球 PC 乙太網晶片 (螃蟹卡) 與音訊 Codec 龍頭" }
+  },
+  {
+    "node_id": "COMP_TEXAS_INSTRUMENTS",
+    "node_type": "COMPANY",
+    "name_zh": "德州儀器 (TI)",
+    "name_en": "Texas Instruments Incorporated",
+    "layer_id": 4,
+    "subsector_code": "L4_ANALOG_POWER_IC",
+    "elasticity_score": 0.30,
+    "global_market_share_pct": 19.0,
+    "metadata": { "ticker": "TXN", "country": "US", "market_cap_bil": 165.0, "role": "全球最大類比晶片與嵌入式微控制器供應商" }
+  },
+  {
+    "node_id": "COMP_ADI",
+    "node_type": "COMPANY",
+    "name_zh": "亞德諾半導體 (ADI)",
+    "name_en": "Analog Devices, Inc.",
+    "layer_id": 4,
+    "subsector_code": "L4_ANALOG_POWER_IC",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 14.0,
+    "metadata": { "ticker": "ADI", "country": "US", "market_cap_bil": 110.0, "role": "高階精密運算放大器、資料轉換器 (ADC/DAC) 與 BMS" }
   },
   {
     "node_id": "COMP_TSMC",
@@ -52,18 +382,150 @@
     "subsector_code": "L5_ADVANCED_FOUNDRY",
     "elasticity_score": 0.05,
     "global_market_share_pct": 62.0,
-    "metadata": { "country": "TW", "ticker": "2330.TW", "market_cap_bil": 950.0 }
+    "metadata": { "ticker": "2330.TW", "country": "TW", "market_cap_bil": 950.0, "role": "全球純晶圓代工龍頭，先進製程 (<=3nm) 佔比 >85%" }
+  },
+  {
+    "node_id": "COMP_UMC",
+    "node_type": "COMPANY",
+    "name_zh": "聯華電子 (UMC)",
+    "name_en": "United Microelectronics Corp.",
+    "layer_id": 5,
+    "subsector_code": "L5_MATURE_FOUNDRY",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 6.5,
+    "metadata": { "ticker": "2303.TW", "country": "TW", "market_cap_bil": 21.0, "role": "成熟特殊製程 (22/28nm、OLED DDI、嵌入式高壓) 龍頭" }
+  },
+  {
+    "node_id": "COMP_GLOBALFOUNDRIES",
+    "node_type": "COMPANY",
+    "name_zh": "格羅方德 (GlobalFoundries)",
+    "name_en": "GlobalFoundries Inc.",
+    "layer_id": 5,
+    "subsector_code": "L5_MATURE_FOUNDRY",
+    "elasticity_score": 0.45,
+    "global_market_share_pct": 6.0,
+    "metadata": { "ticker": "GFS", "country": "US", "market_cap_bil": 23.0, "role": "FD-SOI 射頻技術與車用特殊晶圓代工" }
+  },
+  {
+    "node_id": "COMP_SMIC",
+    "node_type": "COMPANY",
+    "name_zh": "中芯國際 (SMIC)",
+    "name_en": "Semiconductor Manufacturing International",
+    "layer_id": 5,
+    "subsector_code": "L5_MATURE_FOUNDRY",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 5.8,
+    "metadata": { "ticker": "0981.HK", "country": "CN", "market_cap_bil": 26.0, "role": "中國大陸最大晶圓代工廠 (受美國實體清單管制)" }
+  },
+  {
+    "node_id": "COMP_SAMSUNG_FOUNDRY",
+    "node_type": "COMPANY",
+    "name_zh": "三星晶圓代工 (Samsung Foundry)",
+    "name_en": "Samsung Electronics (Foundry Division)",
+    "layer_id": 5,
+    "subsector_code": "L5_ADVANCED_FOUNDRY",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 11.5,
+    "metadata": { "ticker": "005930.KS", "country": "KR", "market_cap_bil": 340.0, "role": "全球第二大晶圓代工廠，率先導入 3nm GAA 架構" }
+  },
+  {
+    "node_id": "COMP_INTEL",
+    "node_type": "COMPANY",
+    "name_zh": "英特爾製造 (Intel Foundry)",
+    "name_en": "Intel Corporation (IFS)",
+    "layer_id": 5,
+    "subsector_code": "L5_ADVANCED_FOUNDRY",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 7.0,
+    "metadata": { "ticker": "INTC", "country": "US", "market_cap_bil": 98.0, "role": "美國本土最重要先進製程 (18A) IDM 與代工" }
+  },
+  {
+    "node_id": "COMP_INFINEON",
+    "node_type": "COMPANY",
+    "name_zh": "英飛凌 (Infineon)",
+    "name_en": "Infineon Technologies AG",
+    "layer_id": 5,
+    "subsector_code": "L5_POWER_COMPOUND",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 21.0,
+    "metadata": { "ticker": "IFX.DE", "country": "DE", "market_cap_bil": 46.0, "role": "全球第一大車用功率半導體 (SiC / IGBT) 龍頭" }
   },
   {
     "node_id": "COMP_ASE_GROUP",
     "node_type": "COMPANY",
     "name_zh": "日月光投控 (ASE Group)",
-    "name_en": "ASE Technology Holding",
+    "name_en": "ASE Technology Holding Co., Ltd.",
     "layer_id": 6,
     "subsector_code": "L6_ADVANCED_PACKAGING",
     "elasticity_score": 0.25,
     "global_market_share_pct": 28.0,
-    "metadata": { "country": "TW", "ticker": "3711.TW", "market_cap_bil": 22.0 }
+    "metadata": { "ticker": "3711.TW", "country": "TW", "market_cap_bil": 22.5, "role": "全球第一大半導體封裝與測試 (OSAT) 龍頭，VIPack 平台" }
+  },
+  {
+    "node_id": "COMP_AMKOR",
+    "node_type": "COMPANY",
+    "name_zh": "艾克爾 (Amkor)",
+    "name_en": "Amkor Technology, Inc.",
+    "layer_id": 6,
+    "subsector_code": "L6_ADVANCED_PACKAGING",
+    "elasticity_score": 0.30,
+    "global_market_share_pct": 14.5,
+    "metadata": { "ticker": "AMKR", "country": "US", "market_cap_bil": 7.5, "role": "全球第二大封測廠，美系先進封裝與車用封裝支柱" }
+  },
+  {
+    "node_id": "COMP_KYEC",
+    "node_type": "COMPANY",
+    "name_zh": "京元電子 (KYEC)",
+    "name_en": "King Yuan Electronics Co., Ltd.",
+    "layer_id": 6,
+    "subsector_code": "L6_TESTING_SERVICES",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 35.0,
+    "metadata": { "ticker": "2449.TW", "country": "TW", "market_cap_bil": 4.8, "role": "全球最大專業半導體測試廠，承接 NVIDIA AI 晶片最終測試" }
+  },
+  {
+    "node_id": "COMP_IBIDEN",
+    "node_type": "COMPANY",
+    "name_zh": "揖斐電 (Ibiden)",
+    "name_en": "Ibiden Co., Ltd.",
+    "layer_id": 6,
+    "subsector_code": "L6_ABF_SUBSTRATE",
+    "elasticity_score": 0.12,
+    "global_market_share_pct": 35.0,
+    "metadata": { "ticker": "4062.T", "country": "JP", "market_cap_bil": 5.2, "role": "全球高階 CPU/GPU 專用 ABF 載板技術龍頭" }
+  },
+  {
+    "node_id": "COMP_SHINKO",
+    "node_type": "COMPANY",
+    "name_zh": "新光電氣 (Shinko)",
+    "name_en": "Shinko Electric Industries Co., Ltd.",
+    "layer_id": 6,
+    "subsector_code": "L6_ABF_SUBSTRATE",
+    "elasticity_score": 0.18,
+    "global_market_share_pct": 20.0,
+    "metadata": { "ticker": "6967.T", "country": "JP", "market_cap_bil": 4.1, "role": "伺服器級高階載板與晶片散熱蓋板" }
+  },
+  {
+    "node_id": "COMP_UNIMICRON",
+    "node_type": "COMPANY",
+    "name_zh": "欣興電子 (Unimicron)",
+    "name_en": "Unimicron Technology Corp.",
+    "layer_id": 6,
+    "subsector_code": "L6_ABF_SUBSTRATE",
+    "elasticity_score": 0.18,
+    "global_market_share_pct": 25.0,
+    "metadata": { "ticker": "3037.TW", "country": "TW", "market_cap_bil": 8.6, "role": "全球最大 PCB 廠，大尺寸 AI 伺服器 ABF 載板產能領先" }
+  },
+  {
+    "node_id": "COMP_NAN_YA_PCB",
+    "node_type": "COMPANY",
+    "name_zh": "南亞電路板 (Nan Ya PCB)",
+    "name_en": "Nan Ya Printed Circuit Board Corp.",
+    "layer_id": 6,
+    "subsector_code": "L6_ABF_SUBSTRATE",
+    "elasticity_score": 0.28,
+    "global_market_share_pct": 14.0,
+    "metadata": { "ticker": "8046.TW", "country": "TW", "market_cap_bil": 3.8, "role": "台塑集團旗下網通與高效能運算 IC 載板廠" }
   },
   {
     "node_id": "COMP_SK_HYNIX",
@@ -72,20 +534,174 @@
     "name_en": "SK Hynix Inc.",
     "layer_id": 7,
     "subsector_code": "L7_HBM_MEMORY",
-    "elasticity_score": 0.18,
-    "global_market_share_pct": 52.0,
-    "metadata": { "country": "KR", "ticker": "000660.KS", "market_cap_bil": 98.0 }
+    "elasticity_score": 0.12,
+    "global_market_share_pct": 53.0,
+    "metadata": { "ticker": "000660.KS", "country": "KR", "market_cap_bil": 98.0, "role": "高頻寬記憶體 (HBM3 / HBM3e) 全球獨家主供，MR-MUF 封裝技術" }
+  },
+  {
+    "node_id": "COMP_MICRON",
+    "node_type": "COMPANY",
+    "name_zh": "美光科技 (Micron)",
+    "name_en": "Micron Technology, Inc.",
+    "layer_id": 7,
+    "subsector_code": "L7_HBM_MEMORY",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 24.0,
+    "metadata": { "ticker": "MU", "country": "US", "market_cap_bil": 115.0, "role": "美國唯一記憶體 IDM，1-beta 節點 HBM3e 量產供應商" }
+  },
+  {
+    "node_id": "COMP_MURATA",
+    "node_type": "COMPANY",
+    "name_zh": "村田製作所 (Murata)",
+    "name_en": "Murata Manufacturing Co., Ltd.",
+    "layer_id": 7,
+    "subsector_code": "L7_PASSIVE_COMPONENTS",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 40.0,
+    "metadata": { "ticker": "6981.T", "country": "JP", "market_cap_bil": 38.5, "role": "全球積層陶瓷電容 (MLCC) 龍頭，車規與高階超微型 MLCC 霸主" }
+  },
+  {
+    "node_id": "COMP_YAGEO",
+    "node_type": "COMPANY",
+    "name_zh": "國巨 (Yageo)",
+    "name_en": "Yageo Corporation",
+    "layer_id": 7,
+    "subsector_code": "L7_PASSIVE_COMPONENTS",
+    "elasticity_score": 0.35,
+    "global_market_share_pct": 18.0,
+    "metadata": { "ticker": "2327.TW", "country": "TW", "market_cap_bil": 7.8, "role": "全球晶片電阻 (R-Chip) 第一大、鉭質電容第一大" }
+  },
+  {
+    "node_id": "COMP_VERTIV",
+    "node_type": "COMPANY",
+    "name_zh": "維諦技術 (Vertiv)",
+    "name_en": "Vertiv Holdings Co",
+    "layer_id": 7,
+    "subsector_code": "L7_THERMAL_COOLING",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 32.0,
+    "metadata": { "ticker": "VRT", "country": "US", "market_cap_bil": 45.0, "role": "超大規模資料中心電力架構與冷卻分配單元 (CDU) 龍頭" }
+  },
+  {
+    "node_id": "COMP_AURAS",
+    "node_type": "COMPANY",
+    "name_zh": "雙鴻科技 (Auras)",
+    "name_en": "Auras Technology Co., Ltd.",
+    "layer_id": 7,
+    "subsector_code": "L7_THERMAL_COOLING",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 28.0,
+    "metadata": { "ticker": "3324.TW", "country": "TW", "market_cap_bil": 2.5, "role": "水冷散熱板 (Cold Plate)、分歧管與浸沒式冷卻模組" }
+  },
+  {
+    "node_id": "COMP_CCI",
+    "node_type": "COMPANY",
+    "name_zh": "奇鋐科技 (CCI)",
+    "name_en": "Asia Vital Components Co., Ltd.",
+    "layer_id": 7,
+    "subsector_code": "L7_THERMAL_COOLING",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 35.0,
+    "metadata": { "ticker": "3017.TW", "country": "TW", "market_cap_bil": 6.8, "role": "3D VC 氣冷均熱板與 AI 伺服器整機水冷模組主要供應商" }
+  },
+  {
+    "node_id": "COMP_DELTA_ELEC",
+    "node_type": "COMPANY",
+    "name_zh": "台達電子 (Delta Electronics)",
+    "name_en": "Delta Electronics, Inc.",
+    "layer_id": 7,
+    "subsector_code": "L7_POWER_SUPPLY",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 55.0,
+    "metadata": { "ticker": "2308.TW", "country": "TW", "market_cap_bil": 32.0, "role": "伺服器鈦金級電源供應器 (PSU) 與 DC-DC 轉換器全球龍頭" }
+  },
+  {
+    "node_id": "COMP_KING_SLIDE",
+    "node_type": "COMPANY",
+    "name_zh": "川湖科技 (King Slide)",
+    "name_en": "King Slide Works Co., Ltd.",
+    "layer_id": 7,
+    "subsector_code": "L7_SERVER_SLIDES",
+    "elasticity_score": 0.08,
+    "global_market_share_pct": 82.0,
+    "metadata": { "ticker": "2059.TW", "country": "TW", "market_cap_bil": 4.5, "role": "AI 高載重伺服器導軌全球專利絕對壟斷" }
+  },
+  {
+    "node_id": "COMP_LARGAN",
+    "node_type": "COMPANY",
+    "name_zh": "大立光 (Largan Precision)",
+    "name_en": "Largan Precision Co., Ltd.",
+    "layer_id": 7,
+    "subsector_code": "L7_OPTICAL_LENSES",
+    "elasticity_score": 0.15,
+    "global_market_share_pct": 45.0,
+    "metadata": { "ticker": "3008.TW", "country": "TW", "market_cap_bil": 10.5, "role": "iPhone 與旗艦手機潛望鏡頭塑膠鏡片專利霸主" }
   },
   {
     "node_id": "COMP_FOXCONN",
     "node_type": "COMPANY",
-    "name_zh": "鴻海精密 / 富士康 (Foxconn)",
+    "name_zh": "鴻海精密 (Foxconn)",
     "name_en": "Hon Hai Precision Industry Co., Ltd.",
     "layer_id": 8,
     "subsector_code": "L8_AI_SERVERS",
-    "elasticity_score": 0.35,
-    "global_market_share_pct": 40.0,
-    "metadata": { "country": "TW", "ticker": "2317.TW", "market_cap_bil": 70.0 }
+    "elasticity_score": 0.30,
+    "global_market_share_pct": 42.0,
+    "metadata": { "ticker": "2317.TW", "country": "TW", "market_cap_bil": 72.0, "role": "全球最大 EMS 廠，NVIDIA NVL72 水冷整櫃伺服器主要代工" }
+  },
+  {
+    "node_id": "COMP_QUANTA",
+    "node_type": "COMPANY",
+    "name_zh": "廣達電腦 (Quanta)",
+    "name_en": "Quanta Computer Inc.",
+    "layer_id": 8,
+    "subsector_code": "L8_AI_SERVERS",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 30.0,
+    "metadata": { "ticker": "2382.TW", "country": "TW", "market_cap_bil": 36.0, "role": "雲達 (QCT) 白牌雲端伺服器與 Google/微軟 AI ODM 龍頭" }
+  },
+  {
+    "node_id": "COMP_WISTRON",
+    "node_type": "COMPANY",
+    "name_zh": "緯創資通 (Wistron)",
+    "name_en": "Wistron Corporation",
+    "layer_id": 8,
+    "subsector_code": "L8_GPU_BASEBOARDS",
+    "elasticity_score": 0.18,
+    "global_market_share_pct": 65.0,
+    "metadata": { "ticker": "3231.TW", "country": "TW", "market_cap_bil": 10.5, "role": "NVIDIA GPU 運算基板 (UBB/OAM) 獨家/核心供應商" }
+  },
+  {
+    "node_id": "COMP_WIWYNN",
+    "node_type": "COMPANY",
+    "name_zh": "緯穎科技 (Wiwynn)",
+    "name_en": "Wiwynn Corporation",
+    "layer_id": 8,
+    "subsector_code": "L8_AI_SERVERS",
+    "elasticity_score": 0.25,
+    "global_market_share_pct": 18.0,
+    "metadata": { "ticker": "6669.TW", "country": "TW", "market_cap_bil": 12.5, "role": "專注超大規模資料中心 (Meta/微軟/AWS) 純白牌伺服器" }
+  },
+  {
+    "node_id": "COMP_SUPERMICRO",
+    "node_type": "COMPANY",
+    "name_zh": "美超微 (Supermicro)",
+    "name_en": "Super Micro Computer, Inc.",
+    "layer_id": 8,
+    "subsector_code": "L8_AI_SERVERS",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 12.0,
+    "metadata": { "ticker": "SMCI", "country": "US", "market_cap_bil": 25.0, "role": "模組化伺服器 (Building Block Solutions) 快速交付" }
+  },
+  {
+    "node_id": "COMP_PEGATRON",
+    "node_type": "COMPANY",
+    "name_zh": "和碩聯合 (Pegatron)",
+    "name_en": "Pegatron Corporation",
+    "layer_id": 8,
+    "subsector_code": "L8_END_DEVICES_OEM",
+    "elasticity_score": 0.45,
+    "global_market_share_pct": 20.0,
+    "metadata": { "ticker": "4938.TW", "country": "TW", "market_cap_bil": 8.2, "role": "iPhone 與消費電子主要組裝廠" }
   },
   {
     "node_id": "COMP_MICROSOFT",
@@ -96,6 +712,61 @@
     "subsector_code": "L8_CLOUD_CSP",
     "elasticity_score": 0.40,
     "global_market_share_pct": 24.0,
-    "metadata": { "country": "US", "ticker": "MSFT", "market_cap_bil": 3100.0 }
+    "metadata": { "ticker": "MSFT", "country": "US", "market_cap_bil": 3100.0, "role": "Azure 雲端服務商，全球最大 AI 算力採購巨頭 (OpenAI 夥伴)" }
+  },
+  {
+    "node_id": "COMP_AMAZON",
+    "node_type": "COMPANY",
+    "name_zh": "亞馬遜 (Amazon AWS)",
+    "name_en": "Amazon.com, Inc. (AWS)",
+    "layer_id": 8,
+    "subsector_code": "L8_CLOUD_CSP",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 31.0,
+    "metadata": { "ticker": "AMZN", "country": "US", "market_cap_bil": 2100.0, "role": "全球第一大公有雲端架構服務商 (AWS)" }
+  },
+  {
+    "node_id": "COMP_GOOGLE",
+    "node_type": "COMPANY",
+    "name_zh": "谷歌 (Google Cloud)",
+    "name_en": "Alphabet Inc. (Google)",
+    "layer_id": 8,
+    "subsector_code": "L8_CLOUD_CSP",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 12.0,
+    "metadata": { "ticker": "GOOGL", "country": "US", "market_cap_bil": 2200.0, "role": "Google Cloud 與自研 TPU 算力生態集大成者" }
+  },
+  {
+    "node_id": "COMP_META",
+    "node_type": "COMPANY",
+    "name_zh": "Meta (元宇宙科技)",
+    "name_en": "Meta Platforms, Inc.",
+    "layer_id": 8,
+    "subsector_code": "L8_CLOUD_CSP",
+    "elasticity_score": 0.40,
+    "global_market_share_pct": 10.0,
+    "metadata": { "ticker": "META", "country": "US", "market_cap_bil": 1450.0, "role": "Llama 開源模型算力集群建設者，全球最大單一 GPU 買家之一" }
+  },
+  {
+    "node_id": "COMP_APPLE",
+    "node_type": "COMPANY",
+    "name_zh": "蘋果公司 (Apple)",
+    "name_en": "Apple Inc.",
+    "layer_id": 8,
+    "subsector_code": "L8_END_DEVICES_OEM",
+    "elasticity_score": 0.20,
+    "global_market_share_pct": 20.0,
+    "metadata": { "ticker": "AAPL", "country": "US", "market_cap_bil": 3500.0, "role": "全球最高價值科技消費品牌，iPhone/Mac 生態掌控者" }
+  },
+  {
+    "node_id": "COMP_TESLA",
+    "node_type": "COMPANY",
+    "name_zh": "特斯拉 (Tesla)",
+    "name_en": "Tesla, Inc.",
+    "layer_id": 8,
+    "subsector_code": "L8_END_DEVICES_OEM",
+    "elasticity_score": 0.35,
+    "global_market_share_pct": 18.0,
+    "metadata": { "ticker": "TSLA", "country": "US", "market_cap_bil": 800.0, "role": "全自動輔助駕駛 (FSD)、Dojo 超級電腦與智慧電動車" }
   }
 ]

@@ -10,14 +10,14 @@ interface AtlasGraphProps {
 }
 
 const LAYER_X_MAP: Record<number, number> = {
-  1: 100,  // L1 材料
-  2: 280,  // L2 設備
-  3: 460,  // L3 EDA/IP
-  4: 640,  // L4 IC 設計
-  5: 820,  // L5 晶圓製造
-  6: 1000, // L6 封測
-  7: 1180, // L7 零組件/HBM
-  8: 1360, // L8 終端/CSP
+  1: 120,  // L1 材料
+  2: 330,  // L2 設備
+  3: 540,  // L3 EDA/IP
+  4: 750,  // L4 IC 設計
+  5: 960,  // L5 晶圓製造
+  6: 1170, // L6 封測
+  7: 1380, // L7 零組件/HBM
+  8: 1590, // L8 終端/CSP
 };
 
 const LAYER_COLORS: Record<number, string> = {
@@ -72,8 +72,8 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
     Object.keys(layerGroups).forEach((layerKey) => {
       const lid = Number(layerKey);
       const list = layerGroups[lid];
-      const startY = 120;
-      const gapY = 130;
+      const startY = 90;
+      const gapY = 82;
       list.forEach((node, idx) => {
         posMap[node.id] = {
           x: LAYER_X_MAP[lid] || 500,
@@ -114,12 +114,19 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
 
   const handleMouseUp = () => setIsDragging(false);
 
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
+    setScale((prev) => Math.min(Math.max(prev * zoomFactor, 0.35), 2.5));
+  };
+
   return (
     <div
       className="relative flex-1 h-full bg-slate-950 overflow-hidden cursor-grab active:cursor-grabbing"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
+      onWheel={handleWheel}
     >
       {/* 畫布控制按鈕 */}
       <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/90 border border-slate-800 rounded-lg p-1.5 backdrop-blur shadow-lg text-xs text-slate-300">
