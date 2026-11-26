@@ -6,16 +6,18 @@ FastAPI 主應用程式入口 (Backend Main Entrypoint)
 import sqlite3
 import json
 from pathlib import Path
+from pydantic import BaseModel, Field
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.simulation import simulate_supply_shock, calculate_systemic_risk_index
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "atlas.db"
 
 app = FastAPI(
     title="Tech Supply Chain Atlas API",
-    description="全球科技硬體與半導體 8 大層級供應鏈圖譜分析引擎",
-    version="0.1.0",
+    description="全球科技硬體與半導體 8 大層級供應鏈圖譜與 Leontief 衝擊分析引擎",
+    version="0.2.0",
 )
 
 app.add_middleware(
@@ -78,6 +80,42 @@ def get_full_graph():
             "total_edges": len(edges),
         },
     }
+
+
+class ShockRequest(BaseModel):
+    node_id: str = Field(..., description="外生衝擊源節點 ID, 如 'COMP_TSMC'")
+    shock_pct: float = Field(30.0, ge=1.0, le=100.0, description="產能受損百分比 (1.0 ~ 100.0)")
+    max_depth: int = Field(5, ge=1, le=10, description="最大傳導階數")
+
+
+@app.post("/api/v1/simulate/shock")
+def run_shock_simulation(req: ShockRequest):
+    """
+    執行單點斷鏈衝擊模擬 (Leontief Wavefront 衝擊傳導)
+    """
+    try:
+        result = simulate_supply_shock(
+            trigger_node_id=req.node_id,
+            shock_magnitude_pct=req.shock_pct,
+            max_depth=req.max_depth
+        )
+        return {"status": "success", "data": result}
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"衝擊模擬運算失敗: {str(e)}")
+
+
+@app.get("/api/v1/simulate/systemic-risk")
+def get_systemic_risk_rankings():
+    """
+    取得全供應鏈節點之系統性風險脆弱度排行 (Systemic Risk Ranking)
+    """
+    try:
+        rankings = calculate_systemic_risk_index()
+        return {"status": "success", "data": rankings}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"系統性風險評估失敗: {str(e)}")
 
 
 if __name__ == "__main__":

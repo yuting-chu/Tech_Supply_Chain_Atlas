@@ -1,5 +1,5 @@
 import React from 'react';
-import { AtlasNode, AtlasEdge, Layer } from '../../types/atlas';
+import { AtlasNode, AtlasEdge, Layer, AffectedNode } from '../../types/atlas';
 import {
   X,
   ExternalLink,
@@ -8,6 +8,7 @@ import {
   ArrowDownRight,
   TrendingUp,
   Cpu,
+  Zap,
 } from 'lucide-react';
 
 interface DetailPanelProps {
@@ -17,6 +18,8 @@ interface DetailPanelProps {
   allNodes: AtlasNode[];
   onClose: () => void;
   onSelectNode: (node: AtlasNode) => void;
+  onTriggerShock?: (nodeId: string) => void;
+  shockImpact?: AffectedNode;
 }
 
 export const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -26,6 +29,8 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
   allNodes,
   onClose,
   onSelectNode,
+  onTriggerShock,
+  shockImpact,
 }) => {
   if (!node) return null;
 
@@ -92,6 +97,40 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {/* 當前衝擊受損資訊 (若有模擬) */}
+        {shockImpact && (
+          <div className="p-3 rounded-lg bg-rose-950/40 border border-rose-800/80 text-xs space-y-1">
+            <div className="flex items-center justify-between text-rose-300 font-bold">
+              <span className="flex items-center gap-1.5">
+                <Zap className="w-4 h-4 text-rose-400 animate-pulse" />
+                {shockImpact.is_trigger ? '外生斷鏈衝擊源' : `連鎖受損 (${shockImpact.depth} 階下游)`}
+              </span>
+              <span className="font-mono text-sm text-rose-400">
+                -{shockImpact.severity_pct}% 產能
+              </span>
+            </div>
+            <div className="text-[11px] text-slate-400">
+              累積前置時間延遲: <strong className="text-slate-200">{shockImpact.cumulative_lead_time_days} 天</strong>
+            </div>
+            {shockImpact.est_value_loss_bil !== undefined && shockImpact.est_value_loss_bil > 0 && (
+              <div className="text-[11px] text-amber-400">
+                預估價值蒸發: ~${shockImpact.est_value_loss_bil} B
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 觸發衝擊按鈕 */}
+        {onTriggerShock && (
+          <button
+            onClick={() => onTriggerShock(node.id)}
+            className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/60 rounded-lg text-rose-300 font-semibold text-xs transition-all shadow-sm"
+          >
+            <Zap className="w-3.5 h-3.5" />
+            以此節點模擬斷鏈衝擊 (Simulate Shock)
+          </button>
+        )}
+
         {/* 計量與財務關鍵指標卡片 */}
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-slate-950/60 border border-slate-800 p-3 rounded-lg">

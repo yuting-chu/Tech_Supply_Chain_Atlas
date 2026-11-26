@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { LayerNav } from './components/LayerNav/LayerNav';
 import { AtlasGraph } from './components/GraphView/AtlasGraph';
 import { DetailPanel } from './components/DetailPanel/DetailPanel';
-import { Layer, AtlasNode, AtlasEdge } from './types/atlas';
-import { Activity, Database, GitBranch, Sparkles } from 'lucide-react';
+import { ShockModal } from './components/ShockModal/ShockModal';
+import { Layer, AtlasNode, AtlasEdge, AffectedNode, ShockSimulationResponse } from './types/atlas';
+import { Activity, Database, GitBranch, Sparkles, Zap, RotateCcw } from 'lucide-react';
 
 export default function App() {
   const [layers, setLayers] = useState<Layer[]>([]);
@@ -13,7 +14,13 @@ export default function App() {
   const [selectedNode, setSelectedNode] = useState<AtlasNode | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 載入資料（優先自 FastAPI 後端取得，失敗時載入內建 Seed 資料）
+  // 衝擊模擬狀態
+  const [isShockModalOpen, setIsShockModalOpen] = useState(false);
+  const [simulationResult, setSimulationResult] = useState<ShockSimulationResponse | null>(null);
+  const [shockMap, setShockMap] = useState<Record<string, AffectedNode>>({});
+  const [shockInitialNodeId, setShockInitialNodeId] = useState<string>('COMP_TSMC');
+
+  // 載入資料
   useEffect(() => {
     async function fetchData() {
       try {
@@ -73,7 +80,43 @@ export default function App() {
     }
   };
 
+  // 執行衝擊模擬
+  const handleRunSimulation = async (nodeId: string, shockPct: number): Promise<ShockSimulationResponse | null> => {
+    try {
+      const res = await fetch('/api/v1/simulate/shock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ node_id: nodeId, shock_pct: shockPct }),
+      });
+      const json = await res.json();
+      if (json?.data) {
+        const data: ShockSimulationResponse = json.data;
+        setSimulationResult(data);
+        const map: Record<string, AffectedNode> = {};
+        data.affected_nodes.forEach((n) => {
+          map[n.node_id] = n;
+        });
+        setShockMap(map);
+        return data;
+      }
+    } catch (err) {
+      console.error('Shock simulation failed', err);
+    }
+    return null;
+  };
+
+  const handleResetSimulation = () => {
+    setSimulationResult(null);
+    setShockMap({});
+  };
+
+  const handleOpenShockWithNode = (nodeId: string) => {
+    setShockInitialNodeId(nodeId);
+    setIsShockModalOpen(true);
+  };
+
   const currentLayer = layers.find((l) => l.layer_id === selectedNode?.layer_id);
+  const currentShockImpact = selectedNode ? shockMap[selectedNode.id] : undefined;
 
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-950 overflow-hidden font-sans">
@@ -87,27 +130,50 @@ export default function App() {
             <h1 className="text-sm font-bold text-slate-100 flex items-center gap-2">
               Tech Supply Chain Atlas
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">
-                v0.1.0-alpha
+                v0.2.0-beta
               </span>
             </h1>
             <p className="text-[11px] text-slate-400">全球半導體與科技硬體 8 大層級全景圖譜</p>
           </div>
         </div>
 
-        {/* 統計與模式膠囊 */}
-        <div className="flex items-center gap-4 text-xs text-slate-400">
-          <div className="flex items-center gap-1.5">
-            <Database className="w-4 h-4 text-indigo-400" />
-            <span>節點數: <strong className="text-slate-200 font-mono">{nodes.length}</strong></span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <GitBranch className="w-4 h-4 text-emerald-400" />
-            <span>依賴關係: <strong className="text-slate-200 font-mono">{edges.length}</strong></span>
-          </div>
+        {/* 模擬器捷徑與狀態 */}
+        <div className="flex items-center gap-3">
+          {simulationResult && (
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-rose-950/80 border border-rose-800 text-rose-300 text-xs">
+              <span className="flex items-center gap-1 font-semibold">
+                <Zap className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
+                模擬中斷: {simulationResult.trigger_node.name_zh} (-{simulationResult.shock_magnitude_pct}%)
+              </span>
+              <button
+                onClick={handleResetSimulation}
+                className="text-[11px] text-slate-400 hover:text-slate-200 underline ml-1"
+              >
+                清除
+              </button>
+            </div>
+          )}
+
+          <button
+            onClick={() => setIsShockModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs shadow-md shadow-rose-900/30 transition-all"
+          >
+            <Zap className="w-3.5 h-3.5" />
+            斷鏈衝擊模擬器
+          </button>
+
           <div className="h-4 w-px bg-slate-800" />
-          <div className="flex items-center gap-1 bg-slate-800/80 px-2.5 py-1 rounded-md text-slate-300">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>計量經濟視角: Leontief 網絡拓撲</span>
+
+          {/* 統計指標 */}
+          <div className="flex items-center gap-3 text-xs text-slate-400">
+            <div className="flex items-center gap-1.5">
+              <Database className="w-3.5 h-3.5 text-indigo-400" />
+              <span>節點: <strong className="text-slate-200 font-mono">{nodes.length}</strong></span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
+              <span>關係: <strong className="text-slate-200 font-mono">{edges.length}</strong></span>
+            </div>
           </div>
         </div>
       </header>
@@ -129,6 +195,7 @@ export default function App() {
           selectedLayers={selectedLayers}
           selectedNode={selectedNode}
           onSelectNode={setSelectedNode}
+          shockMap={shockMap}
         />
 
         {/* 右欄：節點深度洞察側邊抽屜 */}
@@ -140,9 +207,22 @@ export default function App() {
             allNodes={nodes}
             onClose={() => setSelectedNode(null)}
             onSelectNode={setSelectedNode}
+            onTriggerShock={handleOpenShockWithNode}
+            shockImpact={currentShockImpact}
           />
         )}
       </div>
+
+      {/* 斷鏈衝擊傳導模擬彈窗 */}
+      <ShockModal
+        isOpen={isShockModalOpen}
+        onClose={() => setIsShockModalOpen(false)}
+        nodes={nodes}
+        initialNodeId={shockInitialNodeId}
+        onRunSimulation={handleRunSimulation}
+        activeSimulation={simulationResult}
+        onResetSimulation={handleResetSimulation}
+      />
     </div>
   );
 }

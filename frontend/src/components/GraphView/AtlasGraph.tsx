@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { AtlasNode, AtlasEdge } from '../../types/atlas';
+import { AtlasNode, AtlasEdge, AffectedNode } from '../../types/atlas';
 
 interface AtlasGraphProps {
   nodes: AtlasNode[];
@@ -7,6 +7,7 @@ interface AtlasGraphProps {
   selectedLayers: number[];
   selectedNode: AtlasNode | null;
   onSelectNode: (node: AtlasNode | null) => void;
+  shockMap?: Record<string, AffectedNode>;
 }
 
 const LAYER_X_MAP: Record<number, number> = {
@@ -37,6 +38,7 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
   selectedLayers,
   selectedNode,
   onSelectNode,
+  shockMap = {},
 }) => {
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 40, y: 50 });
@@ -245,11 +247,12 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
           const tgt = nodePositions[edge.target];
           if (!src || !tgt) return null;
 
+          const isShockEdge = Boolean(shockMap[edge.source] && shockMap[edge.target]);
           const isRelatedToSelected =
             selectedNode &&
             (edge.source === selectedNode.id || edge.target === selectedNode.id);
 
-          const isDimmed = selectedNode && !isRelatedToSelected;
+          const isDimmed = selectedNode && !isRelatedToSelected && !isShockEdge;
 
           // 貝茲曲線控制點
           const dx = tgt.x - src.x;
@@ -258,7 +261,9 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
           }, ${src.x + dx * 0.5} ${tgt.y}, ${tgt.x} ${tgt.y}`;
 
           const strokeWidth = Math.max(edge.dependency_weight * 3.5, 1.2);
-          const strokeColor = edge.is_single_source
+          const strokeColor = isShockEdge
+            ? '#F43F5E'
+            : edge.is_single_source
             ? '#EF4444'
             : isRelatedToSelected
             ? '#38BDF8'
@@ -270,16 +275,18 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
                 d={curvePath}
                 fill="none"
                 stroke={strokeColor}
-                strokeWidth={isRelatedToSelected ? strokeWidth + 1.5 : strokeWidth}
-                strokeDasharray={edge.is_single_source ? '4 3' : undefined}
+                strokeWidth={isShockEdge ? strokeWidth + 2 : isRelatedToSelected ? strokeWidth + 1.5 : strokeWidth}
+                strokeDasharray={isShockEdge ? '5 3' : edge.is_single_source ? '4 3' : undefined}
                 markerEnd={
-                  edge.is_single_source
+                  isShockEdge
+                    ? 'url(#arrow-single)'
+                    : edge.is_single_source
                     ? 'url(#arrow-single)'
                     : isRelatedToSelected
                     ? 'url(#arrow-active)'
                     : 'url(#arrow)'
                 }
-                opacity={isDimmed ? 0.15 : isRelatedToSelected ? 1 : 0.6}
+                opacity={isDimmed ? 0.15 : isShockEdge ? 1 : isRelatedToSelected ? 1 : 0.6}
                 className="transition-all duration-200"
               />
             </g>
@@ -293,9 +300,15 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
 
           const isSelected = selectedNode?.id === node.id;
           const isConnected = connectedNodeIds?.has(node.id);
-          const isDimmed = selectedNode && !isConnected;
+          const shockInfo = shockMap[node.id];
+          const isShocked = Boolean(shockInfo);
+          const isDimmed = selectedNode && !isConnected && !isShocked;
 
-          const color = LAYER_COLORS[node.layer_id] || '#94A3B8';
+          const color = isShocked
+            ? shockInfo.is_trigger
+              ? '#EF4444'
+              : '#F97316'
+            : LAYER_COLORS[node.layer_id] || '#94A3B8';
 
           return (
             <g
@@ -308,8 +321,20 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
               className="cursor-pointer"
               opacity={isDimmed ? 0.25 : 1}
             >
-              {/* 外圈光暈 */}
-              {isSelected && (
+              {/* 外圈衝擊/選中光暈 */}
+              {isShocked && (
+                <circle
+                  r={shockInfo.is_trigger ? "36" : "30"}
+                  fill="none"
+                  stroke={shockInfo.is_trigger ? "#EF4444" : "#F97316"}
+                  strokeWidth="2.5"
+                  strokeDasharray="4 2"
+                  className="animate-spin"
+                  style={{ animationDuration: shockInfo.is_trigger ? '4s' : '10s' }}
+                />
+              )}
+
+              {isSelected && !isShocked && (
                 <circle
                   r="32"
                   fill="none"
@@ -323,28 +348,54 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
 
               {/* 節點主圓圈 */}
               <circle
-                r={isSelected ? "24" : "20"}
-                fill="#0F172A"
+                r={isSelected || isShocked ? "24" : "20"}
+                fill={isShocked ? (shockInfo.is_trigger ? "#450A0A" : "#2A1208") : "#0F172A"}
                 stroke={color}
-                strokeWidth={isSelected ? "3" : "2"}
+                strokeWidth={isSelected || isShocked ? "3" : "2"}
                 className="transition-all hover:scale-110"
               />
 
+              {/* 衝擊受損百分比小標籤 (上方) */}
+              {isShocked && (
+                <g transform="translate(0, -30)">
+                  <rect
+                    x="-24"
+                    y="-9"
+                    width="48"
+                    height="16"
+                    rx="4"
+                    fill={shockInfo.is_trigger ? "#991B1B" : "#C2410C"}
+                  />
+                  <text
+                    textAnchor="middle"
+                    y="3"
+                    fill="#FFFFFF"
+                    fontSize="9"
+                    fontWeight="bold"
+                    fontFamily="monospace"
+                  >
+                    -{shockInfo.severity_pct}%
+                  </text>
+                </g>
+              )}
+
               {/* 替代彈性小圓標 (0~1) */}
-              <circle
-                cx="14"
-                cy="-14"
-                r="6"
-                fill={node.elasticity_score < 0.2 ? '#EF4444' : '#10B981'}
-              />
+              {!isShocked && (
+                <circle
+                  cx="14"
+                  cy="-14"
+                  r="6"
+                  fill={node.elasticity_score < 0.2 ? '#EF4444' : '#10B981'}
+                />
+              )}
 
               {/* 節點文字標籤 */}
               <text
                 y="34"
                 textAnchor="middle"
-                fill={isSelected ? '#F8FAFC' : '#CBD5E1'}
+                fill={isSelected || isShocked ? '#F8FAFC' : '#CBD5E1'}
                 fontSize="11"
-                fontWeight={isSelected ? 'bold' : 'normal'}
+                fontWeight={isSelected || isShocked ? 'bold' : 'normal'}
                 className="select-none pointer-events-none"
               >
                 {node.name_zh.split(' ')[0]}

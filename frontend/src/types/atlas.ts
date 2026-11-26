@@ -47,16 +47,29 @@ export interface AtlasEdge {
   qualitative_notes?: string;
 }
 
-export interface ShockSimulationRequest {
-  trigger_node_id: string;
-  shock_percentage: number;
+export interface AffectedNode {
+  node_id: string;
+  name_zh: string;
+  layer_id: number;
+  severity_pct: number;
+  depth: number;
+  cumulative_lead_time_days: number;
+  is_trigger: boolean;
+  path: string[];
+  market_cap_bil?: number;
+  est_value_loss_bil?: number;
 }
 
-export interface ShockSimulationResult {
-  trigger_node_id: string;
-  affected_nodes: Array<{
-    node_id: string;
-    impact_severity: number;
-    path_depth: number;
+export interface ShockSimulationResponse {
+  trigger_node: Record<string, any>;
+  shock_magnitude_pct: number;
+  affected_count: number;
+  total_estimated_value_loss_bil: number;
+  max_propagation_depth: number;
+  layer_summary: Array<{
+    layer_id: number;
+    count: number;
+    avg_severity_pct: number;
   }>;
+  affected_nodes: AffectedNode[];
 }
