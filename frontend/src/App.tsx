@@ -3,8 +3,10 @@ import { LayerNav } from './components/LayerNav/LayerNav';
 import { AtlasGraph } from './components/GraphView/AtlasGraph';
 import { DetailPanel } from './components/DetailPanel/DetailPanel';
 import { ShockModal } from './components/ShockModal/ShockModal';
+import { BeginnerTour } from './components/BeginnerTour/BeginnerTour';
+import { BEGINNER_STEPS } from './data/beginnerSteps';
 import { Layer, AtlasNode, AtlasEdge, AffectedNode, ShockSimulationResponse } from './types/atlas';
-import { Activity, Database, GitBranch, Sparkles, Zap, RotateCcw } from 'lucide-react';
+import { Activity, Database, GitBranch, Sparkles, Zap, RotateCcw, GraduationCap, Compass } from 'lucide-react';
 
 export default function App() {
   const [layers, setLayers] = useState<Layer[]>([]);
@@ -19,6 +21,10 @@ export default function App() {
   const [simulationResult, setSimulationResult] = useState<ShockSimulationResponse | null>(null);
   const [shockMap, setShockMap] = useState<Record<string, AffectedNode>>({});
   const [shockInitialNodeId, setShockInitialNodeId] = useState<string>('COMP_TSMC');
+
+  // 初學者導覽狀態
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [tourStepIndex, setTourStepIndex] = useState(0);
 
   // 載入資料
   useEffect(() => {
@@ -80,6 +86,29 @@ export default function App() {
     }
   };
 
+  // 初學者導覽控制
+  const handleStartTour = () => {
+    setIsTourOpen(true);
+    setTourStepIndex(0);
+    const step = BEGINNER_STEPS[0];
+    setSelectedLayers([step.layerId]);
+    const firstNode = nodes.find((n) => n.id === step.featuredNodeIds[0]);
+    if (firstNode) setSelectedNode(firstNode);
+  };
+
+  const handleTourStepChange = (newIndex: number) => {
+    setTourStepIndex(newIndex);
+    const step = BEGINNER_STEPS[newIndex];
+    setSelectedLayers([step.layerId]);
+    const firstNode = nodes.find((n) => n.id === step.featuredNodeIds[0]);
+    if (firstNode) setSelectedNode(firstNode);
+  };
+
+  const handleCloseTour = () => {
+    setIsTourOpen(false);
+    setSelectedLayers([1, 2, 3, 4, 5, 6, 7, 8]);
+  };
+
   // 執行衝擊模擬
   const handleRunSimulation = async (nodeId: string, shockPct: number): Promise<ShockSimulationResponse | null> => {
     try {
@@ -130,15 +159,29 @@ export default function App() {
             <h1 className="text-sm font-bold text-slate-100 flex items-center gap-2">
               Tech Supply Chain Atlas
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">
-                v0.2.0-beta
+                v0.3.0
               </span>
             </h1>
             <p className="text-[11px] text-slate-400">全球半導體與科技硬體 8 大層級全景圖譜</p>
           </div>
         </div>
 
-        {/* 模擬器捷徑與狀態 */}
+        {/* 模式切換與模擬器 */}
         <div className="flex items-center gap-3">
+          {/* 初學者導覽模式開關 */}
+          <button
+            onClick={isTourOpen ? handleCloseTour : handleStartTour}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+              isTourOpen
+                ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-900/40 ring-2 ring-indigo-400/30'
+                : 'bg-slate-800 hover:bg-slate-700 text-indigo-300 border-indigo-800/60'
+            }`}
+          >
+            <GraduationCap className="w-4 h-4 text-indigo-300" />
+            {isTourOpen ? '退出導覽 (自由探索)' : '🎓 晶片誕生之旅 (初學者)'}
+          </button>
+
+          {/* 衝擊模擬器狀態 */}
           {simulationResult && (
             <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-rose-950/80 border border-rose-800 text-rose-300 text-xs">
               <span className="flex items-center gap-1 font-semibold">
@@ -159,7 +202,7 @@ export default function App() {
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs shadow-md shadow-rose-900/30 transition-all"
           >
             <Zap className="w-3.5 h-3.5" />
-            斷鏈衝擊模擬器
+            斷鏈衝擊模擬
           </button>
 
           <div className="h-4 w-px bg-slate-800" />
@@ -179,7 +222,7 @@ export default function App() {
       </header>
 
       {/* 核心三欄內容主體 */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative">
         {/* 左欄：8 大層級階梯導航 */}
         <LayerNav
           layers={layers}
@@ -209,6 +252,17 @@ export default function App() {
             onSelectNode={setSelectedNode}
             onTriggerShock={handleOpenShockWithNode}
             shockImpact={currentShockImpact}
+          />
+        )}
+
+        {/* 初學者導覽浮動控制面板 */}
+        {isTourOpen && (
+          <BeginnerTour
+            currentStepIndex={tourStepIndex}
+            onStepChange={handleTourStepChange}
+            onClose={handleCloseTour}
+            allNodes={nodes}
+            onSelectNode={setSelectedNode}
           />
         )}
       </div>
