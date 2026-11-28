@@ -1,5 +1,6 @@
 import React from 'react';
 import { AtlasNode, AtlasEdge, Layer, AffectedNode } from '../../types/atlas';
+import { LAYER_CAREER_PROFILES } from '../../data/careerData';
 import {
   X,
   ExternalLink,
@@ -9,6 +10,9 @@ import {
   TrendingUp,
   Cpu,
   Zap,
+  Briefcase,
+  GraduationCap,
+  Sparkles,
 } from 'lucide-react';
 
 interface DetailPanelProps {
@@ -20,6 +24,7 @@ interface DetailPanelProps {
   onSelectNode: (node: AtlasNode) => void;
   onTriggerShock?: (nodeId: string) => void;
   shockImpact?: AffectedNode;
+  isCareerMode?: boolean;
 }
 
 export const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -31,6 +36,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
   onSelectNode,
   onTriggerShock,
   shockImpact,
+  isCareerMode = false,
 }) => {
   if (!node) return null;
 
@@ -262,6 +268,67 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
             </div>
           )}
         </div>
+
+        {/* 💼 求職者導航：本層級關鍵職缺與技能樹 */}
+        {node && (
+          <div className={`mt-4 p-3.5 rounded-xl border ${
+            isCareerMode 
+              ? 'bg-emerald-950/30 border-emerald-600/80 shadow-lg shadow-emerald-950/50' 
+              : 'bg-slate-950/70 border-slate-800'
+          }`}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                <Briefcase className="w-4 h-4" />
+                L{node.layer_id} 核心求職天梯與技能樹
+              </span>
+              {LAYER_CAREER_PROFILES[node.layer_id] && (
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+                  {LAYER_CAREER_PROFILES[node.layer_id].salaryTier.split(' ')[0]}
+                </span>
+              )}
+            </div>
+
+            {LAYER_CAREER_PROFILES[node.layer_id] && (
+              <div className="space-y-3">
+                <div className="text-[11px] text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <div className="text-slate-400 mb-1">
+                    工時節奏: <strong className="text-slate-200">{LAYER_CAREER_PROFILES[node.layer_id].workLifeBalance}</strong>
+                  </div>
+                  <div className="text-emerald-300 text-[10px] leading-relaxed">
+                    🛡️ <strong>職業護城河:</strong> {LAYER_CAREER_PROFILES[node.layer_id].growthMoat}
+                  </div>
+                </div>
+
+                {/* 代表性核心職缺 */}
+                <div className="space-y-2">
+                  <span className="text-[11px] font-semibold text-slate-300 block">
+                    🎯 代表性招募職缺:
+                  </span>
+                  {LAYER_CAREER_PROFILES[node.layer_id].representativeRoles.map((role, idx) => (
+                    <div key={idx} className="p-2 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs">
+                      <div className="font-semibold text-slate-200 text-xs mb-1">
+                        {role.title}
+                      </div>
+                      <p className="text-[11px] text-slate-400 mb-2 leading-relaxed">
+                        {role.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        {role.requiredSkills.map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className="px-1.5 py-0.5 bg-slate-800 text-emerald-300 text-[10px] rounded border border-slate-700"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </aside>
   );

@@ -8,6 +8,7 @@ interface AtlasGraphProps {
   selectedNode: AtlasNode | null;
   onSelectNode: (node: AtlasNode | null) => void;
   shockMap?: Record<string, AffectedNode>;
+  isCareerMode?: boolean;
 }
 
 const LAYER_X_MAP: Record<number, number> = {
@@ -39,6 +40,7 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
   selectedNode,
   onSelectNode,
   shockMap = {},
+  isCareerMode = false,
 }) => {
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 40, y: 50 });
@@ -403,11 +405,21 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
               <text
                 y="46"
                 textAnchor="middle"
-                fill="#64748B"
+                fill={isCareerMode ? '#34D399' : '#64748B'}
                 fontSize="9"
+                fontWeight={isCareerMode ? 'bold' : 'normal'}
                 className="select-none pointer-events-none font-mono"
               >
-                市佔 {node.global_market_share_pct}%
+                {isCareerMode
+                  ? node.layer_id === 1 ? '材料化學'
+                  : node.layer_id === 2 ? '設備/光學FAE'
+                  : node.layer_id === 3 ? 'EDA/IP演算法'
+                  : node.layer_id === 4 ? 'IC架構/RTL'
+                  : node.layer_id === 5 ? '製程整合/良率'
+                  : node.layer_id === 6 ? '先進封裝/載板'
+                  : node.layer_id === 7 ? '熱流散熱/電源'
+                  : '系統架構/組裝'
+                  : `市佔 ${node.global_market_share_pct}%`}
               </text>
             </g>
           );

@@ -4,9 +4,21 @@ import { AtlasGraph } from './components/GraphView/AtlasGraph';
 import { DetailPanel } from './components/DetailPanel/DetailPanel';
 import { ShockModal } from './components/ShockModal/ShockModal';
 import { BeginnerTour } from './components/BeginnerTour/BeginnerTour';
+import { CareerBar } from './components/CareerNav/CareerBar';
 import { BEGINNER_STEPS } from './data/beginnerSteps';
-import { Layer, AtlasNode, AtlasEdge, AffectedNode, ShockSimulationResponse } from './types/atlas';
-import { Activity, Database, GitBranch, Sparkles, Zap, RotateCcw, GraduationCap, Compass } from 'lucide-react';
+import { MajorCategory, MAJOR_CATEGORIES } from './data/careerData';
+import { Layer, AtlasNode, AtlasEdge, AffectedNode, ShockSimulationResponse, ViewMode } from './types/atlas';
+import {
+  Activity,
+  Database,
+  GitBranch,
+  Sparkles,
+  Zap,
+  RotateCcw,
+  GraduationCap,
+  Briefcase,
+  Compass,
+} from 'lucide-react';
 
 export default function App() {
   const [layers, setLayers] = useState<Layer[]>([]);
@@ -16,6 +28,9 @@ export default function App() {
   const [selectedNode, setSelectedNode] = useState<AtlasNode | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // 視角模式 (Explore / Beginner / Career)
+  const [viewMode, setViewMode] = useState<ViewMode>('EXPLORE');
+
   // 衝擊模擬狀態
   const [isShockModalOpen, setIsShockModalOpen] = useState(false);
   const [simulationResult, setSimulationResult] = useState<ShockSimulationResponse | null>(null);
@@ -23,8 +38,10 @@ export default function App() {
   const [shockInitialNodeId, setShockInitialNodeId] = useState<string>('COMP_TSMC');
 
   // 初學者導覽狀態
-  const [isTourOpen, setIsTourOpen] = useState(false);
   const [tourStepIndex, setTourStepIndex] = useState(0);
+
+  // 求職者模式狀態
+  const [selectedMajor, setSelectedMajor] = useState<MajorCategory | 'ALL'>('ALL');
 
   // 載入資料
   useEffect(() => {
@@ -88,7 +105,7 @@ export default function App() {
 
   // 初學者導覽控制
   const handleStartTour = () => {
-    setIsTourOpen(true);
+    setViewMode('BEGINNER_TOUR');
     setTourStepIndex(0);
     const step = BEGINNER_STEPS[0];
     setSelectedLayers([step.layerId]);
@@ -105,11 +122,33 @@ export default function App() {
   };
 
   const handleCloseTour = () => {
-    setIsTourOpen(false);
+    setViewMode('EXPLORE');
     setSelectedLayers([1, 2, 3, 4, 5, 6, 7, 8]);
   };
 
-  // 執行衝擊模擬
+  // 求職者模式控制
+  const handleStartCareerMode = () => {
+    if (viewMode === 'CAREER_NAVIGATOR') {
+      setViewMode('EXPLORE');
+      setSelectedMajor('ALL');
+      setSelectedLayers([1, 2, 3, 4, 5, 6, 7, 8]);
+    } else {
+      setViewMode('CAREER_NAVIGATOR');
+      setSelectedMajor('ALL');
+    }
+  };
+
+  const handleSelectMajor = (major: MajorCategory | 'ALL') => {
+    setSelectedMajor(major);
+    if (major === 'ALL') {
+      setSelectedLayers([1, 2, 3, 4, 5, 6, 7, 8]);
+    } else {
+      const info = MAJOR_CATEGORIES[major];
+      setSelectedLayers(info.primaryLayers);
+    }
+  };
+
+  // 衝擊模擬控制
   const handleRunSimulation = async (nodeId: string, shockPct: number): Promise<ShockSimulationResponse | null> => {
     try {
       const res = await fetch('/api/v1/simulate/shock', {
@@ -159,26 +198,39 @@ export default function App() {
             <h1 className="text-sm font-bold text-slate-100 flex items-center gap-2">
               Tech Supply Chain Atlas
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">
-                v0.3.0
+                v0.4.0
               </span>
             </h1>
             <p className="text-[11px] text-slate-400">全球半導體與科技硬體 8 大層級全景圖譜</p>
           </div>
         </div>
 
-        {/* 模式切換與模擬器 */}
+        {/* 模式切換器與工具列 */}
         <div className="flex items-center gap-3">
-          {/* 初學者導覽模式開關 */}
+          {/* 初學者模式按鈕 */}
           <button
-            onClick={isTourOpen ? handleCloseTour : handleStartTour}
+            onClick={viewMode === 'BEGINNER_TOUR' ? handleCloseTour : handleStartTour}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
-              isTourOpen
+              viewMode === 'BEGINNER_TOUR'
                 ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-900/40 ring-2 ring-indigo-400/30'
                 : 'bg-slate-800 hover:bg-slate-700 text-indigo-300 border-indigo-800/60'
             }`}
           >
             <GraduationCap className="w-4 h-4 text-indigo-300" />
-            {isTourOpen ? '退出導覽 (自由探索)' : '🎓 晶片誕生之旅 (初學者)'}
+            {viewMode === 'BEGINNER_TOUR' ? '退出導覽 (自由探索)' : '🎓 晶片誕生之旅 (初學者)'}
+          </button>
+
+          {/* 求職者模式按鈕 */}
+          <button
+            onClick={handleStartCareerMode}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+              viewMode === 'CAREER_NAVIGATOR'
+                ? 'bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-900/40 ring-2 ring-emerald-400/30'
+                : 'bg-slate-800 hover:bg-slate-700 text-emerald-300 border-emerald-800/60'
+            }`}
+          >
+            <Briefcase className="w-4 h-4 text-emerald-300" />
+            {viewMode === 'CAREER_NAVIGATOR' ? '退出求職 (自由探索)' : '💼 半導體求職導航'}
           </button>
 
           {/* 衝擊模擬器狀態 */}
@@ -223,6 +275,15 @@ export default function App() {
 
       {/* 核心三欄內容主體 */}
       <div className="flex-1 flex overflow-hidden relative">
+        {/* 求職導航浮動頂條 (若啟用求職者模式) */}
+        {viewMode === 'CAREER_NAVIGATOR' && (
+          <CareerBar
+            selectedMajor={selectedMajor}
+            onSelectMajor={handleSelectMajor}
+            onClose={() => setViewMode('EXPLORE')}
+          />
+        )}
+
         {/* 左欄：8 大層級階梯導航 */}
         <LayerNav
           layers={layers}
@@ -239,6 +300,7 @@ export default function App() {
           selectedNode={selectedNode}
           onSelectNode={setSelectedNode}
           shockMap={shockMap}
+          isCareerMode={viewMode === 'CAREER_NAVIGATOR'}
         />
 
         {/* 右欄：節點深度洞察側邊抽屜 */}
@@ -252,11 +314,12 @@ export default function App() {
             onSelectNode={setSelectedNode}
             onTriggerShock={handleOpenShockWithNode}
             shockImpact={currentShockImpact}
+            isCareerMode={viewMode === 'CAREER_NAVIGATOR'}
           />
         )}
 
-        {/* 初學者導覽浮動控制面板 */}
-        {isTourOpen && (
+        {/* 初學者導覽浮動控制面板 (若啟用初學者模式) */}
+        {viewMode === 'BEGINNER_TOUR' && (
           <BeginnerTour
             currentStepIndex={tourStepIndex}
             onStepChange={handleTourStepChange}
