@@ -1,6 +1,8 @@
 export type LayerCode = 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6' | 'L7' | 'L8';
 
-export type ViewMode = 'EXPLORE' | 'BEGINNER_TOUR' | 'CAREER_NAVIGATOR';
+export type ViewMode = 'EXPLORE' | 'BEGINNER_TOUR' | 'CAREER_NAVIGATOR' | 'INVESTOR';
+
+export type InvestorFilter = 'ALL' | 'HIGH_MARGIN' | 'CUSTOMER_CONCENTRATION' | 'GEOPOLITICAL_RISK';
 
 export interface Layer {
   layer_id: number;

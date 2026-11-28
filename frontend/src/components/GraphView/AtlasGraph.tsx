@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { AtlasNode, AtlasEdge, AffectedNode } from '../../types/atlas';
+import { AtlasNode, AtlasEdge, AffectedNode, InvestorFilter } from '../../types/atlas';
+import { INVESTOR_PROFILES } from '../../data/investorData';
 
 interface AtlasGraphProps {
   nodes: AtlasNode[];
@@ -9,6 +10,8 @@ interface AtlasGraphProps {
   onSelectNode: (node: AtlasNode | null) => void;
   shockMap?: Record<string, AffectedNode>;
   isCareerMode?: boolean;
+  isInvestorMode?: boolean;
+  investorFilter?: InvestorFilter;
 }
 
 const LAYER_X_MAP: Record<number, number> = {
@@ -41,6 +44,8 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
   onSelectNode,
   shockMap = {},
   isCareerMode = false,
+  isInvestorMode = false,
+  investorFilter = 'ALL',
 }) => {
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 40, y: 50 });
@@ -304,12 +309,24 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
           const isConnected = connectedNodeIds?.has(node.id);
           const shockInfo = shockMap[node.id];
           const isShocked = Boolean(shockInfo);
-          const isDimmed = selectedNode && !isConnected && !isShocked;
+
+          // 投資人維度過濾
+          const invProfile = INVESTOR_PROFILES[node.id];
+          const matchesInvestorFilter =
+            !isInvestorMode ||
+            investorFilter === 'ALL' ||
+            (investorFilter === 'HIGH_MARGIN' && (invProfile?.grossMarginPct || 0) >= 50) ||
+            (investorFilter === 'CUSTOMER_CONCENTRATION' && Boolean(invProfile?.highConcentrationCustomer)) ||
+            (investorFilter === 'GEOPOLITICAL_RISK' && Boolean(invProfile?.geopoliticalStatus && invProfile.geopoliticalStatus !== 'CLEAN'));
+
+          const isDimmed = (selectedNode && !isConnected && !isShocked) || (isInvestorMode && !matchesInvestorFilter);
 
           const color = isShocked
             ? shockInfo.is_trigger
               ? '#EF4444'
               : '#F97316'
+            : isInvestorMode && !matchesInvestorFilter
+            ? '#334155'
             : LAYER_COLORS[node.layer_id] || '#94A3B8';
 
           return (
@@ -405,9 +422,9 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
               <text
                 y="46"
                 textAnchor="middle"
-                fill={isCareerMode ? '#34D399' : '#64748B'}
+                fill={isCareerMode ? '#34D399' : isInvestorMode ? '#FBBF24' : '#64748B'}
                 fontSize="9"
-                fontWeight={isCareerMode ? 'bold' : 'normal'}
+                fontWeight={isCareerMode || isInvestorMode ? 'bold' : 'normal'}
                 className="select-none pointer-events-none font-mono"
               >
                 {isCareerMode
@@ -419,6 +436,8 @@ export const AtlasGraph: React.FC<AtlasGraphProps> = ({
                   : node.layer_id === 6 ? '先進封裝/載板'
                   : node.layer_id === 7 ? '熱流散熱/電源'
                   : '系統架構/組裝'
+                  : isInvestorMode
+                  ? invProfile?.grossMarginPct ? `毛利 ${invProfile.grossMarginPct}%` : `市佔 ${node.global_market_share_pct}%`
                   : `市佔 ${node.global_market_share_pct}%`}
               </text>
             </g>

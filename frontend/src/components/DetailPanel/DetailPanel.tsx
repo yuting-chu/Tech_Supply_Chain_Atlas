@@ -1,6 +1,7 @@
 import React from 'react';
 import { AtlasNode, AtlasEdge, Layer, AffectedNode } from '../../types/atlas';
 import { LAYER_CAREER_PROFILES } from '../../data/careerData';
+import { INVESTOR_PROFILES } from '../../data/investorData';
 import {
   X,
   ExternalLink,
@@ -13,6 +14,9 @@ import {
   Briefcase,
   GraduationCap,
   Sparkles,
+  DollarSign,
+  ShieldAlert,
+  ShieldCheck,
 } from 'lucide-react';
 
 interface DetailPanelProps {
@@ -25,6 +29,7 @@ interface DetailPanelProps {
   onTriggerShock?: (nodeId: string) => void;
   shockImpact?: AffectedNode;
   isCareerMode?: boolean;
+  isInvestorMode?: boolean;
 }
 
 export const DetailPanel: React.FC<DetailPanelProps> = ({
@@ -37,6 +42,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
   onTriggerShock,
   shockImpact,
   isCareerMode = false,
+  isInvestorMode = false,
 }) => {
   if (!node) return null;
 
@@ -181,6 +187,91 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
             </div>
           )}
         </div>
+
+        {/* 📈 投資人護城河、財務三率與曝險透視 */}
+        {node && INVESTOR_PROFILES[node.id] && (
+          <div className={`p-3.5 rounded-xl border space-y-3 ${
+            isInvestorMode
+              ? 'bg-amber-950/30 border-amber-500/80 shadow-lg shadow-amber-950/50'
+              : 'bg-slate-950/70 border-slate-800'
+          }`}>
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-xs font-bold text-amber-400">
+                <DollarSign className="w-4 h-4" />
+                投資人財務與護城河評估
+              </span>
+              <span className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold border ${
+                INVESTOR_PROFILES[node.id].moatTier === 'WIDE_MOAT'
+                  ? 'bg-amber-950 text-amber-300 border-amber-700'
+                  : 'bg-slate-800 text-slate-300 border-slate-700'
+              }`}>
+                {INVESTOR_PROFILES[node.id].moatTier === 'WIDE_MOAT' ? '寬護城河 (Wide Moat)' : '窄護城河 (Narrow)'}
+              </span>
+            </div>
+
+            {/* 財務三率網格 */}
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
+                <span className="text-[10px] text-slate-400 block">毛利率</span>
+                <span className="text-sm font-bold font-mono text-emerald-400">
+                  {INVESTOR_PROFILES[node.id].grossMarginPct}%
+                </span>
+              </div>
+              <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
+                <span className="text-[10px] text-slate-400 block">營業利益率</span>
+                <span className="text-sm font-bold font-mono text-indigo-400">
+                  {INVESTOR_PROFILES[node.id].operatingMarginPct}%
+                </span>
+              </div>
+              <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-lg">
+                <span className="text-[10px] text-slate-400 block">研發強度 (R&D)</span>
+                <span className="text-sm font-bold font-mono text-amber-400">
+                  {INVESTOR_PROFILES[node.id].rdIntensityPct}%
+                </span>
+              </div>
+            </div>
+
+            {/* 護城河來源解讀 */}
+            <div className="text-[11px] text-slate-300 bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+              <span className="text-amber-300 font-semibold">🏰 護城河壁壘：</span>{' '}
+              {INVESTOR_PROFILES[node.id].moatType}
+            </div>
+
+            {/* 單一客戶高集中度警告 */}
+            {INVESTOR_PROFILES[node.id].highConcentrationCustomer && (
+              <div className="p-2 rounded-lg bg-rose-950/40 border border-rose-800/80 text-[11px] text-rose-300 flex items-start gap-1.5">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <div>
+                  <strong>高集中度警示：</strong> 客戶【{INVESTOR_PROFILES[node.id].highConcentrationCustomer!.customerName}】貢獻營收{' '}
+                  <span className="font-mono font-bold text-rose-400">
+                    {INVESTOR_PROFILES[node.id].highConcentrationCustomer!.exposurePct}%
+                  </span>
+                  <div className="text-[10px] text-slate-400 mt-0.5">
+                    {INVESTOR_PROFILES[node.id].highConcentrationCustomer!.riskNote}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 地緣政治出口管制標籤 */}
+            {INVESTOR_PROFILES[node.id].geopoliticalStatus !== 'CLEAN' && (
+              <div className="p-2 rounded-lg bg-purple-950/40 border border-purple-800/80 text-[11px] text-purple-300 flex items-start gap-1.5">
+                <ShieldAlert className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                <div>
+                  <strong>地緣政治敏感標籤：</strong>{' '}
+                  <span className="font-mono uppercase font-bold text-purple-300">
+                    {INVESTOR_PROFILES[node.id].geopoliticalStatus}
+                  </span>
+                  {INVESTOR_PROFILES[node.id].geopoliticalNote && (
+                    <div className="text-[10px] text-slate-400 mt-0.5">
+                      {INVESTOR_PROFILES[node.id].geopoliticalNote}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* 瓶頸預警 Alert */}
         {node.elasticity_score < 0.2 && (

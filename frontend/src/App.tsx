@@ -5,9 +5,18 @@ import { DetailPanel } from './components/DetailPanel/DetailPanel';
 import { ShockModal } from './components/ShockModal/ShockModal';
 import { BeginnerTour } from './components/BeginnerTour/BeginnerTour';
 import { CareerBar } from './components/CareerNav/CareerBar';
+import { InvestorBar } from './components/InvestorNav/InvestorBar';
 import { BEGINNER_STEPS } from './data/beginnerSteps';
 import { MajorCategory, MAJOR_CATEGORIES } from './data/careerData';
-import { Layer, AtlasNode, AtlasEdge, AffectedNode, ShockSimulationResponse, ViewMode } from './types/atlas';
+import {
+  Layer,
+  AtlasNode,
+  AtlasEdge,
+  AffectedNode,
+  ShockSimulationResponse,
+  ViewMode,
+  InvestorFilter,
+} from './types/atlas';
 import {
   Activity,
   Database,
@@ -17,6 +26,7 @@ import {
   RotateCcw,
   GraduationCap,
   Briefcase,
+  TrendingUp,
   Compass,
 } from 'lucide-react';
 
@@ -28,7 +38,7 @@ export default function App() {
   const [selectedNode, setSelectedNode] = useState<AtlasNode | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 視角模式 (Explore / Beginner / Career)
+  // 視角模式 (Explore / Beginner / Career / Investor)
   const [viewMode, setViewMode] = useState<ViewMode>('EXPLORE');
 
   // 衝擊模擬狀態
@@ -42,6 +52,9 @@ export default function App() {
 
   // 求職者模式狀態
   const [selectedMajor, setSelectedMajor] = useState<MajorCategory | 'ALL'>('ALL');
+
+  // 投資人模式狀態
+  const [selectedInvestorFilter, setSelectedInvestorFilter] = useState<InvestorFilter>('ALL');
 
   // 載入資料
   useEffect(() => {
@@ -148,6 +161,18 @@ export default function App() {
     }
   };
 
+  // 投資人模式控制
+  const handleStartInvestorMode = () => {
+    if (viewMode === 'INVESTOR') {
+      setViewMode('EXPLORE');
+      setSelectedInvestorFilter('ALL');
+      setSelectedLayers([1, 2, 3, 4, 5, 6, 7, 8]);
+    } else {
+      setViewMode('INVESTOR');
+      setSelectedInvestorFilter('ALL');
+    }
+  };
+
   // 衝擊模擬控制
   const handleRunSimulation = async (nodeId: string, shockPct: number): Promise<ShockSimulationResponse | null> => {
     try {
@@ -198,47 +223,62 @@ export default function App() {
             <h1 className="text-sm font-bold text-slate-100 flex items-center gap-2">
               Tech Supply Chain Atlas
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">
-                v0.4.0
+                v1.0.0
               </span>
             </h1>
             <p className="text-[11px] text-slate-400">全球半導體與科技硬體 8 大層級全景圖譜</p>
           </div>
         </div>
 
-        {/* 模式切換器與工具列 */}
-        <div className="flex items-center gap-3">
-          {/* 初學者模式按鈕 */}
+        {/* 三大客群模式切換器與工具列 */}
+        <div className="flex items-center gap-2.5">
+          {/* 1. 初學者模式 */}
           <button
             onClick={viewMode === 'BEGINNER_TOUR' ? handleCloseTour : handleStartTour}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
               viewMode === 'BEGINNER_TOUR'
                 ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-900/40 ring-2 ring-indigo-400/30'
                 : 'bg-slate-800 hover:bg-slate-700 text-indigo-300 border-indigo-800/60'
             }`}
           >
-            <GraduationCap className="w-4 h-4 text-indigo-300" />
-            {viewMode === 'BEGINNER_TOUR' ? '退出導覽 (自由探索)' : '🎓 晶片誕生之旅 (初學者)'}
+            <GraduationCap className="w-3.5 h-3.5 text-indigo-300" />
+            {viewMode === 'BEGINNER_TOUR' ? '退出導覽' : '🎓 初學者導覽'}
           </button>
 
-          {/* 求職者模式按鈕 */}
+          {/* 2. 求職者模式 */}
           <button
             onClick={handleStartCareerMode}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
               viewMode === 'CAREER_NAVIGATOR'
                 ? 'bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-900/40 ring-2 ring-emerald-400/30'
                 : 'bg-slate-800 hover:bg-slate-700 text-emerald-300 border-emerald-800/60'
             }`}
           >
-            <Briefcase className="w-4 h-4 text-emerald-300" />
-            {viewMode === 'CAREER_NAVIGATOR' ? '退出求職 (自由探索)' : '💼 半導體求職導航'}
+            <Briefcase className="w-3.5 h-3.5 text-emerald-300" />
+            {viewMode === 'CAREER_NAVIGATOR' ? '退出求職' : '💼 求職導航'}
           </button>
+
+          {/* 3. 投資人模式 */}
+          <button
+            onClick={handleStartInvestorMode}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+              viewMode === 'INVESTOR'
+                ? 'bg-amber-600 text-white border-amber-500 shadow-md shadow-amber-900/40 ring-2 ring-amber-400/30'
+                : 'bg-slate-800 hover:bg-slate-700 text-amber-300 border-amber-800/60'
+            }`}
+          >
+            <TrendingUp className="w-3.5 h-3.5 text-amber-300" />
+            {viewMode === 'INVESTOR' ? '退出投資' : '📈 投資人透視'}
+          </button>
+
+          <div className="h-4 w-px bg-slate-800 mx-1" />
 
           {/* 衝擊模擬器狀態 */}
           {simulationResult && (
             <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-rose-950/80 border border-rose-800 text-rose-300 text-xs">
               <span className="flex items-center gap-1 font-semibold">
                 <Zap className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-                模擬中斷: {simulationResult.trigger_node.name_zh} (-{simulationResult.shock_magnitude_pct}%)
+                中斷: {simulationResult.trigger_node.name_zh} (-{simulationResult.shock_magnitude_pct}%)
               </span>
               <button
                 onClick={handleResetSimulation}
@@ -257,17 +297,17 @@ export default function App() {
             斷鏈衝擊模擬
           </button>
 
-          <div className="h-4 w-px bg-slate-800" />
+          <div className="h-4 w-px bg-slate-800 mx-1" />
 
           {/* 統計指標 */}
-          <div className="flex items-center gap-3 text-xs text-slate-400">
-            <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <div className="flex items-center gap-1">
               <Database className="w-3.5 h-3.5 text-indigo-400" />
-              <span>節點: <strong className="text-slate-200 font-mono">{nodes.length}</strong></span>
+              <span><strong className="text-slate-200 font-mono">{nodes.length}</strong></span>
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
-              <span>關係: <strong className="text-slate-200 font-mono">{edges.length}</strong></span>
+              <span><strong className="text-slate-200 font-mono">{edges.length}</strong></span>
             </div>
           </div>
         </div>
@@ -275,7 +315,16 @@ export default function App() {
 
       {/* 核心三欄內容主體 */}
       <div className="flex-1 flex overflow-hidden relative">
-        {/* 求職導航浮動頂條 (若啟用求職者模式) */}
+        {/* 投資人模式浮動工具列 */}
+        {viewMode === 'INVESTOR' && (
+          <InvestorBar
+            selectedFilter={selectedInvestorFilter}
+            onSelectFilter={setSelectedInvestorFilter}
+            onClose={() => setViewMode('EXPLORE')}
+          />
+        )}
+
+        {/* 求職導航浮動工具列 */}
         {viewMode === 'CAREER_NAVIGATOR' && (
           <CareerBar
             selectedMajor={selectedMajor}
@@ -301,6 +350,8 @@ export default function App() {
           onSelectNode={setSelectedNode}
           shockMap={shockMap}
           isCareerMode={viewMode === 'CAREER_NAVIGATOR'}
+          isInvestorMode={viewMode === 'INVESTOR'}
+          investorFilter={selectedInvestorFilter}
         />
 
         {/* 右欄：節點深度洞察側邊抽屜 */}
@@ -315,10 +366,11 @@ export default function App() {
             onTriggerShock={handleOpenShockWithNode}
             shockImpact={currentShockImpact}
             isCareerMode={viewMode === 'CAREER_NAVIGATOR'}
+            isInvestorMode={viewMode === 'INVESTOR'}
           />
         )}
 
-        {/* 初學者導覽浮動控制面板 (若啟用初學者模式) */}
+        {/* 初學者導覽浮動控制面板 */}
         {viewMode === 'BEGINNER_TOUR' && (
           <BeginnerTour
             currentStepIndex={tourStepIndex}
